@@ -1,0 +1,45 @@
+/* Make the image responsive and set a max size */
+.card-banner {
+    width: 100%;          /* Ensure image takes up full width of the container */
+    height: auto;         /* Allow height to adjust while maintaining aspect ratio */
+    overflow: hidden;     /* Prevent overflow */
+}
+
+.img-cover {
+    width: 100%;          /* Ensure the image stretches to the width of the container */
+    max-height: 300px;    /* Limit the maximum height of the image */
+    height: auto;         /* Maintain aspect ratio */
+    object-fit: contain;  /* Adjust the image to fit within the bounds without cropping */
+}
+
+/* Optional: Adjust card size and layout */
+.shop-card {
+    border: 1px solid #ddd;
+    margin: 15px;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.card-content {
+    padding-top: 15px;
+}
+
+.card-price {
+    font-weight: bold;
+}
+
+.card-title {
+    color: #333;
+    text-decoration: none;
+    font-size: 1.2rem;
+}
+
+h5 {
+    text-align: center;   /* Centers the text horizontally */
+    margin: 20px 0;       /* Adds space above and below the title */
+    font-size: 3rem;
+}
