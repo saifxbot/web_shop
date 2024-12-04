@@ -278,62 +278,91 @@
           <ul class="collection-list">
 
             <li>
-              <div class="collection-card has-before hover:shine">
-
-                <h2 class="h2 card-title">Winter Collection</h2>
-
-                <p class="card-text">Starting at €17.99</p>
-
-                <a href="#" class="btn-link">
-                  <span class="span">Shop Now</span>
-
-                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                </a>
-
-                <div class="has-bg-image" style="background-image: url('./assets/images/collection-1.jpg')"></div>
-
+              <div id="product-card" class="collection-card has-before hover:shine">
+                <!-- Content will be injected here -->
               </div>
             </li>
+            
+            <script>
+              // Fetch product data
+              fetch('https://fakestoreapi.com/products/5')
+                .then(res => res.json())
+                .then(product => {
+                  // Select the card container
+                  const productCard = document.getElementById('product-card');
+            
+                  // Inject product details
+                  productCard.innerHTML = `
+                    <h2 class="h2 card-title">${product.title}</h2>
+                    <p class="card-text">Price: €${product.price.toFixed(2)}</p>
+                    <a href="#" class="btn-link">
+                      <span class="span">Shop Now</span>
+                      <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                    </a>
+                    <div class="has-bg-image" style="background-image: url('${product.image}')"></div>
+                  `;
+                })
+                .catch(error => console.error('Error fetching product:', error));
+            </script>
+            
 
             <li>
-              <div class="collection-card has-before hover:shine">
-
-                <h2 class="h2 card-title">What’s New?</h2>
-
-                <p class="card-text">Get the glow</p>
-
-                <a href="#" class="btn-link">
-                  <span class="span">Discover Now</span>
-
-                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                </a>
-
-                <div class="has-bg-image" style="background-image: url('./assets/images/collection-2.jpg')"></div>
-
+              <div id="new-product-card" class="collection-card has-before hover:shine">
+                <!-- Content will be dynamically updated -->
               </div>
             </li>
+            
+            <script>
+              // Fetch product data
+              fetch('https://fakestoreapi.com/products/3')
+                .then(res => res.json())
+                .then(product => {
+                  // Select the card container
+                  const newProductCard = document.getElementById('new-product-card');
+            
+                  // Inject product details
+                  newProductCard.innerHTML = `
+                    <h2 class="h2 card-title">${product.title}</h2>
+                    <p class="card-text">${product.description.slice(0, 50)}...</p>
+                    <a href="#" class="btn-link">
+                      <span class="span">Discover Now</span>
+                      <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                    </a>
+                    <div class="has-bg-image" style="background-image: url('${product.image}')"></div>
+                  `;
+                })
+                .catch(error => console.error('Error fetching product:', error));
+            </script>
+            
 
             <li>
-              <div class="collection-card has-before hover:shine">
-
-                <h2 class="h2 card-title">Buy 1 Get 1</h2>
-
-                <p class="card-text">Starting at €7.99</p>
-
-                <a href="#" class="btn-link">
-                  <span class="span">Discover Now</span>
-
-                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                </a>
-
-                <div class="has-bg-image" style="background-image: url('./assets/images/collection-3.jpg')"></div>
-
+              <div id="buy1-get1-card" class="collection-card has-before hover:shine">
+                <!-- Content will be dynamically updated -->
               </div>
             </li>
-
-          </ul>
-
-        </div>
+            
+            <script>
+              // Fetch product data from API
+              fetch('https://fakestoreapi.com/products/4')
+                .then(res => res.json())
+                .then(product => {
+                  // Select the card container
+                  const buy1Get1Card = document.getElementById('buy1-get1-card');
+            
+                  // Inject the fetched product details into the card
+                  buy1Get1Card.innerHTML = `
+                    <h2 class="h2 card-title">${product.title}</h2>
+                    <p class="card-text">Starting at €${product.price.toFixed(2)}</p>
+                    <a href="#" class="btn-link">
+                      <span class="span">Discover Now</span>
+                      <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                    </a>
+                    <div class="has-bg-image" style="background-image: url('${product.image}')"></div>
+                  `;
+                })
+                .catch(error => console.error('Error fetching product:', error));
+            </script>
+            
       </section>
 
 
@@ -348,7 +377,7 @@
         <div class="container">
 
           <div class="title-wrapper">
-            <h2 class="h2 section-title">Our Bestsellers</h2>
+            <h2 class="h2 section-title">Today's Deal</h2>
 
             <a href="#" class="btn-link">
               <span class="span">Shop All Products</span>
@@ -358,332 +387,335 @@
           </div>
 
           <ul class="has-scrollbar">
+<!-- 
+        best seller first product
+      -->
 
             <li class="scrollbar-item">
-              <div class="shop-card">
+  <div class="shop-card">
+    <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+      <img id="product-image" src="./assets/images/product-01.jpg" width="540" height="720" loading="lazy" alt="Facial cleanser" class="img-cover">
+      <span class="badge" aria-label="20% off" id="product-discount">-20%</span>
 
-                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-                  <img src="./assets/images/product-01.jpg" width="540" height="720" loading="lazy"
-                    alt="Facial cleanser" class="img-cover">
+      <div class="card-actions">
+        <button class="action-btn" aria-label="add to cart">
+          <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+        </button>
+        <button class="action-btn" aria-label="add to wishlist">
+          <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+        </button>
+        <button class="action-btn" aria-label="compare">
+          <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
+        </button>
+      </div>
+    </div>
 
-                  <span class="badge" aria-label="20% off">-20%</span>
+    <div class="card-content">
+      <div class="price">
+        <del id="old-price" class="del">€39.00</del>
+        <span id="new-price" class="span">€29.00</span>
+      </div>
 
-                  <div class="card-actions">
+      <h3>
+        <a href="#" id="product-title" class="card-title">Facial cleanser</a>
+      </h3>
+    </div>
+  </div>
+</li>
 
-                    <button class="action-btn" aria-label="add to cart">
-                      <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-                    </button>
+<script>
+  fetch('https://fakestoreapi.com/products/15')
+    .then(res => res.json())
+    .then(product => {
+      // Dynamically update the content using the fetched product data
+      document.getElementById('product-image').src = product.image; // Update product image
+      document.getElementById('product-title').textContent = product.title; // Update product title
+      document.getElementById('new-price').textContent = `€${product.price.toFixed(2)}`; // Update product price
+      document.getElementById('old-price').textContent = `€${(product.price + 10).toFixed(2)}`; // Update old price with a discount
+      document.getElementById('product-discount').textContent = `-${Math.round(product.price * 0.2)}%`; // Update discount
+    })
+    .catch(error => console.error('Error fetching product 5:', error));
+</script>
 
-                    <button class="action-btn" aria-label="add to whishlist">
-                      <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-                    </button>
+            
+<!-- 
+        best seller second product
+      -->
 
-                    <button class="action-btn" aria-label="compare">
-                      <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <div class="price">
-                    <del class="del">€39.00</del>
-
-                    <span class="span">€29.00</span>
-                  </div>
-
-                  <h3>
-                    <a href="#" class="card-title">Facial cleanser</a>
-                  </h3>
-
-                  <div class="card-rating">
-
-                    <div class="rating-wrapper" aria-label="5 start rating">
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                    </div>
-
-                    <p class="rating-text">5170 reviews</p>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
+      <li class="scrollbar-item">
+        <div class="shop-card">
+      
+          <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+            <img id="product-image-7" src="./assets/images/product-02.jpg" width="540" height="720" loading="lazy"
+              alt="Bio-shroom Rejuvenating Serum" class="img-cover">
+      
+            <div class="card-actions">
+      
+              <button class="action-btn" aria-label="add to cart">
+                <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+              </button>
+      
+              <button class="action-btn" aria-label="add to wishlist">
+                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+              </button>
+      
+              <button class="action-btn" aria-label="compare">
+                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
+              </button>
+      
+            </div>
+          </div>
+      
+          <div class="card-content">
+      
+            <div class="price">
+              <span id="product-price-7" class="span">€29.00</span>
+            </div>
+      
+            <h3>
+              <a href="#" id="product-title-7" class="card-title">Bio-shroom Rejuvenating Serum</a>
+            </h3>
+      
+          </div>
+      
+        </div>
+      </li>
+      
+      <script>
+        fetch('https://fakestoreapi.com/products/18')
+          .then(res => res.json())
+          .then(product => {
+            // Update the card content dynamically
+            document.getElementById('product-image-7').src = product.image; // Update product image
+            document.getElementById('product-title-7').textContent = product.title; // Update product title
+            document.getElementById('product-price-7').textContent = `€${product.price.toFixed(2)}`; // Update product price
+          })
+          .catch(error => console.error('Error fetching product 7:', error));
+      </script>
+      
+<!-- 
+        best seller third product
+      -->
             <li class="scrollbar-item">
-              <div class="shop-card">
+                <div class="shop-card">
+                  <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+                    <img id="product-image-13" src="./assets/images/product-03.jpg" width="540" height="720" loading="lazy" alt="Product image" class="img-cover">
 
-                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-                  <img src="./assets/images/product-02.jpg" width="540" height="720" loading="lazy"
-                    alt="Bio-shroom Rejuvenating Serum" class="img-cover">
-
-                  <div class="card-actions">
-
-                    <button class="action-btn" aria-label="add to cart">
-                      <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="add to whishlist">
-                      <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="compare">
-                      <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <div class="price">
-                    <span class="span">€29.00</span>
+                    <div class="card-actions">
+                      <button class="action-btn" aria-label="add to cart">
+                        <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+                      </button>
+                      <button class="action-btn" aria-label="add to wishlist">
+                        <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+                      </button>
+                      <button class="action-btn" aria-label="compare">
+                        <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
+                      </button>
+                    </div>
                   </div>
 
-                  <h3>
-                    <a href="#" class="card-title">Bio-shroom Rejuvenating Serum</a>
-                  </h3>
-
-                  <div class="card-rating">
-
-                    <div class="rating-wrapper" aria-label="5 start rating">
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
+                  <div class="card-content">
+                    <div class="price">
+                      <span id="product-price-13" class="span">€29.00</span>
                     </div>
 
-                    <p class="rating-text">5170 reviews</p>
+                    <h3>
+                      <a href="#" id="product-title-13" class="card-title">Caffeine Eye Cream</a>
+                    </h3>
 
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li class="scrollbar-item">
-              <div class="shop-card">
-
-                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-                  <img src="./assets/images/product-03.jpg" width="540" height="720" loading="lazy"
-                    alt="Coffee Bean Caffeine Eye Cream" class="img-cover">
-
-                  <div class="card-actions">
-
-                    <button class="action-btn" aria-label="add to cart">
-                      <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="add to whishlist">
-                      <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="compare">
-                      <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <div class="price">
-                    <span class="span">€29.00</span>
-                  </div>
-
-                  <h3>
-                    <a href="#" class="card-title">Caffeine Eye Cream</a>
-                  </h3>
-
-                  <div class="card-rating">
-
-                    <div class="rating-wrapper" aria-label="5 start rating">
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
+                    <div class="card-rating">
+                      <div class="rating-wrapper" aria-label="5 star rating">
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                        <ion-icon name="star" aria-hidden="true"></ion-icon>
+                      </div>
+                      <p id="product-reviews-13" class="rating-text">370 reviews</p>
                     </div>
-
-                    <p class="rating-text">370 reviews</p>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li class="scrollbar-item">
-              <div class="shop-card">
-
-                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-                  <img src="./assets/images/product-04.jpg" width="540" height="720" loading="lazy"
-                    alt="Facial cleanser" class="img-cover">
-
-                  <div class="card-actions">
-
-                    <button class="action-btn" aria-label="add to cart">
-                      <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="add to whishlist">
-                      <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="compare">
-                      <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
                   </div>
                 </div>
+              </li>
 
-                <div class="card-content">
+              <script>
+                fetch('https://fakestoreapi.com/products/3')
+                  .then(res => res.json())
+                  .then(product => {
+                    // Update the card content dynamically
+                    document.getElementById('product-image-13').src = product.image; // Update product image
+                    document.getElementById('product-title-13').textContent = product.title; // Update product title
+                    document.getElementById('product-price-13').textContent = `€${product.price.toFixed(2)}`; // Update product price
+                    document.getElementById('product-reviews-13').textContent = `${product.rating.count} reviews`; // Update reviews count
+                  })
+                  .catch(error => console.error('Error fetching product 13:', error));
+              </script>
 
-                  <div class="price">
-                    <span class="span">€29.00</span>
-                  </div>
-
-                  <h3>
-                    <a href="#" class="card-title">Facial cleanser</a>
-                  </h3>
-
-                  <div class="card-rating">
-
-                    <div class="rating-wrapper" aria-label="5 start rating">
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                    </div>
-
-                    <p class="rating-text">570 reviews</p>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li class="scrollbar-item">
-              <div class="shop-card">
-
-                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-                  <img src="./assets/images/product-05.jpg" width="540" height="720" loading="lazy"
-                    alt="Coffee Bean Caffeine Eye Cream" class="img-cover">
-
-                  <span class="badge" aria-label="20% off">-20%</span>
-
-                  <div class="card-actions">
-
-                    <button class="action-btn" aria-label="add to cart">
-                      <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="add to whishlist">
-                      <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="compare">
-                      <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <div class="price">
-                    <del class="del">€39.00</del>
-
-                    <span class="span">€29.00</span>
-                  </div>
-
-                  <h3>
-                    <a href="#" class="card-title">Caffeine Eye Cream</a>
-                  </h3>
-
-                  <div class="card-rating">
-
-                    <div class="rating-wrapper" aria-label="5 start rating">
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                    </div>
-
-                    <p class="rating-text">970 reviews</p>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
-
-            <li class="scrollbar-item">
-              <div class="shop-card">
-
-                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-                  <img src="./assets/images/product-06.jpg" width="540" height="720" loading="lazy"
-                    alt="Facial cleanser" class="img-cover">
-
-                  <div class="card-actions">
-
-                    <button class="action-btn" aria-label="add to cart">
-                      <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="add to whishlist">
-                      <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="compare">
-                      <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <div class="price">
-                    <span class="span">$29.00</span>
-                  </div>
-
-                  <h3>
-                    <a href="#" class="card-title">Facial cleanser</a>
-                  </h3>
-
-                  <div class="card-rating">
-
-                    <div class="rating-wrapper" aria-label="5 start rating">
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                    </div>
-
-                    <p class="rating-text">5170 reviews</p>
-
-                  </div>
-
-                </div>
-
-              </div>
-            </li>
+<!-- 
+        best seller fourth product
+      -->
+      <li class="scrollbar-item">
+        <div class="shop-card">
+      
+          <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+            <img id="product-image-3" src="./assets/images/product-04.jpg" width="540" height="720" loading="lazy"
+              alt="Facial cleanser" class="img-cover">
+      
+            <div class="card-actions">
+      
+              <button class="action-btn" aria-label="add to cart">
+                <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+              </button>
+      
+              <button class="action-btn" aria-label="add to wishlist">
+                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+              </button>
+      
+              <button class="action-btn" aria-label="compare">
+                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
+              </button>
+      
+            </div>
+          </div>
+      
+          <div class="card-content">
+      
+            <div class="price">
+              <span id="product-price-3" class="span">€29.00</span>
+            </div>
+      
+            <h3>
+              <a href="#" id="product-title-3" class="card-title">Facial cleanser</a>
+            </h3>
+      
+          </div>
+      
+        </div>
+      </li>
+      
+      <script>
+        fetch('https://fakestoreapi.com/products/16')
+          .then(res => res.json())
+          .then(product => {
+            // Update the card content dynamically
+            document.getElementById('product-image-3').src = product.image; // Update product image
+            document.getElementById('product-title-3').textContent = product.title; // Update product title
+            document.getElementById('product-price-3').textContent = `€${product.price.toFixed(2)}`; // Update product price
+          })
+          .catch(error => console.error('Error fetching product 3:', error));
+      </script>
+      <!-- 
+        best seller fifth product
+      -->
+      <li class="scrollbar-item">
+        <div class="shop-card">
+      
+          <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+            <img id="product-image-10" src="./assets/images/product-05.jpg" width="540" height="720" loading="lazy"
+              alt="Coffee Bean Caffeine Eye Cream" class="img-cover">
+      
+            <span id="product-discount-10" class="badge" aria-label="20% off">-20%</span>
+      
+            <div class="card-actions">
+      
+              <button class="action-btn" aria-label="add to cart">
+                <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+              </button>
+      
+              <button class="action-btn" aria-label="add to wishlist">
+                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+              </button>
+      
+              <button class="action-btn" aria-label="compare">
+                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
+              </button>
+      
+            </div>
+          </div>
+      
+          <div class="card-content">
+      
+            <div class="price">
+              <del id="old-price-10" class="del">€39.00</del>
+              <span id="new-price-10" class="span">€29.00</span>
+            </div>
+      
+            <h3>
+              <a href="#" id="product-title-10" class="card-title">Caffeine Eye Cream</a>
+            </h3>
+      
+          </div>
+      
+        </div>
+      </li>
+      
+      <script>
+        fetch('https://fakestoreapi.com/products/10')
+          .then(res => res.json())
+          .then(product => {
+            // Update the card content dynamically
+            document.getElementById('product-image-10').src = product.image; // Update product image
+            document.getElementById('product-title-10').textContent = product.title; // Update product title
+            document.getElementById('new-price-10').textContent = `€${product.price.toFixed(2)}`; // Update product price
+            document.getElementById('old-price-10').textContent = `€${(product.price + 10).toFixed(2)}`; // Update old price with a discount
+            document.getElementById('product-discount-10').textContent = `-${Math.round(product.price * 0.2)}%`; // Update discount
+          })
+          .catch(error => console.error('Error fetching product 10:', error));
+      </script>
+      
+<!-- 
+        best seller sixth product
+      -->
+      <li class="scrollbar-item">
+        <div class="shop-card">
+      
+          <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+            <img id="product-image-6" src="./assets/images/product-06.jpg" width="540" height="720" loading="lazy"
+              alt="Facial cleanser" class="img-cover">
+      
+            <div class="card-actions">
+      
+              <button class="action-btn" aria-label="add to cart">
+                <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+              </button>
+      
+              <button class="action-btn" aria-label="add to wishlist">
+                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+              </button>
+      
+              <button class="action-btn" aria-label="compare">
+                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
+              </button>
+      
+            </div>
+          </div>
+      
+          <div class="card-content">
+      
+            <div class="price">
+              <span id="new-price-6" class="span">$29.00</span>
+            </div>
+      
+            <h3>
+              <a href="#" id="product-title-6" class="card-title">Facial cleanser</a>
+            </h3>
+      
+          </div>
+      
+        </div>
+      </li>
+      
+      <script>
+        fetch('https://fakestoreapi.com/products/20')
+          .then(res => res.json())
+          .then(product => {
+            // Update the card content dynamically
+            document.getElementById('product-image-6').src = product.image; // Update product image
+            document.getElementById('product-title-6').textContent = product.title; // Update product title
+            document.getElementById('new-price-6').textContent = `$${product.price.toFixed(2)}`; // Update product price
+          })
+          .catch(error => console.error('Error fetching product 6:', error));
+      </script>
+      
 
           </ul>
 
@@ -694,7 +726,7 @@
         <div class="container">
 
           <div class="title-wrapper">
-            <h2 class="h2 section-title">Under €30</h2>
+            <h2 class="h2 section-title">You Just Need</h2>
 
             <a href="#" class="btn-link">
               <span class="span">Shop All Products</span>
@@ -704,169 +736,161 @@
           </div>
 
           <ul class="has-scrollbar">
-
+<!-- 
+        U need 1st product
+      -->
             <li class="scrollbar-item">
               <div class="shop-card">
-
                 <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-                  <img src="./assets/images/product-07.jpg" width="540" height="720" loading="lazy"
+                  <img id="product-9-image" src="./assets/images/product-07.jpg" width="540" height="720" loading="lazy"
                     alt="Facial cleanser" class="img-cover">
-
-                  <span class="badge" aria-label="20% off">-20%</span>
-
+                  <span id="product-9-badge" class="badge" aria-label="20% off">-20%</span>
+            
                   <div class="card-actions">
-
                     <button class="action-btn" aria-label="add to cart">
                       <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
                     </button>
-
                     <button class="action-btn" aria-label="add to whishlist">
                       <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
                     </button>
-
                     <button class="action-btn" aria-label="compare">
                       <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
                     </button>
-
                   </div>
                 </div>
-
+            
                 <div class="card-content">
-
                   <div class="price">
-                    <del class="del">€39.00</del>
-
-                    <span class="span">€29.00</span>
+                    <del id="product-9-old-price" class="del">€39.00</del>
+                    <span id="product-9-new-price" class="span">€29.00</span>
                   </div>
-
                   <h3>
-                    <a href="#" class="card-title">Facial cleanser</a>
+                    <a href="#" id="product-9-title" class="card-title">Facial Cleanser</a>
                   </h3>
-
                   <div class="card-rating">
-
-                    <div class="rating-wrapper" aria-label="5 start rating">
+                    <div class="rating-wrapper" aria-label="5 star rating">
                       <ion-icon name="star" aria-hidden="true"></ion-icon>
                       <ion-icon name="star" aria-hidden="true"></ion-icon>
                       <ion-icon name="star" aria-hidden="true"></ion-icon>
                       <ion-icon name="star" aria-hidden="true"></ion-icon>
                       <ion-icon name="star" aria-hidden="true"></ion-icon>
                     </div>
-
-                    <p class="rating-text">5170 reviews</p>
-
+                    <p class="rating-text">5 reviews</p>
                   </div>
-
                 </div>
-
               </div>
             </li>
+            
+            <script>
+              fetch('https://fakestoreapi.com/products/9')
+                .then(res => res.json())
+                .then(product => {
+                  // Dynamically update the content using the fetched product data
+                  document.getElementById('product-9-image').src = product.image; // Update product image
+                  document.getElementById('product-9-title').textContent = product.title; // Update product title
+                  document.getElementById('product-9-new-price').textContent = `€${product.price.toFixed(2)}`; // Update product price
+                  document.getElementById('product-9-old-price').textContent = `€${(product.price + 10).toFixed(2)}`; // Update old price with a discount
+                  document.getElementById('product-9-badge').textContent = `-${Math.round(product.price * 0.2)}%`; // Update discount
+                })
+                .catch(error => console.error('Error fetching product 9:', error));
+            </script>
+<!-- 
+        U need 2nd product
+      -->            
 
-            <li class="scrollbar-item">
-              <div class="shop-card">
-
-                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-                  <img src="./assets/images/product-08.jpg" width="540" height="720" loading="lazy"
-                    alt="Bio-shroom Rejuvenating Serum" class="img-cover">
-
-                  <div class="card-actions">
-
-                    <button class="action-btn" aria-label="add to cart">
-                      <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="add to whishlist">
-                      <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="compare">
-                      <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <div class="price">
-                    <span class="span">€29.00</span>
-                  </div>
-
-                  <h3>
-                    <a href="#" class="card-title">Bio-shroom Rejuvenating Serum</a>
-                  </h3>
-
-                  <div class="card-rating">
-
-                    <div class="rating-wrapper" aria-label="5 start rating">
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                    </div>
-
-                    <p class="rating-text">5170 reviews</p>
-
-                  </div>
-
-                </div>
-
+      <li class="scrollbar-item">
+        <div class="shop-card">
+          <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+            <img id="product-11-image" src="./assets/images/product-08.jpg" width="540" height="720" loading="lazy"
+              alt="Bio-shroom Rejuvenating Serum" class="img-cover">
+      
+            <div class="card-actions">
+              <button class="action-btn" aria-label="add to cart">
+                <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+              </button>
+              <button class="action-btn" aria-label="add to whishlist">
+                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+              </button>
+              <button class="action-btn" aria-label="compare">
+                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
+              </button>
+            </div>
+          </div>
+      
+          <div class="card-content">
+            <div class="price">
+              <span id="product-11-price" class="span">€29.00</span>
+            </div>
+            <h3>
+              <a href="#" id="product-11-title" class="card-title">Bio-shroom Rejuvenating Serum</a>
+            </h3>
+            <div class="card-rating">
+              <div class="rating-wrapper" aria-label="5 star rating">
+                <ion-icon name="star" aria-hidden="true"></ion-icon>
+                <ion-icon name="star" aria-hidden="true"></ion-icon>
+                <ion-icon name="star" aria-hidden="true"></ion-icon>
+                <ion-icon name="star" aria-hidden="true"></ion-icon>
+                <ion-icon name="star" aria-hidden="true"></ion-icon>
               </div>
-            </li>
-
-            <li class="scrollbar-item">
-              <div class="shop-card">
-
-                <div class="card-banner img-holder" style="--width: 540; --height: 720;">
-                  <img src="./assets/images/product-09.jpg" width="540" height="720" loading="lazy"
-                    alt="Coffee Bean Caffeine Eye Cream" class="img-cover">
-
-                  <div class="card-actions">
-
-                    <button class="action-btn" aria-label="add to cart">
-                      <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="add to whishlist">
-                      <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                    <button class="action-btn" aria-label="compare">
-                      <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-                    </button>
-
-                  </div>
-                </div>
-
-                <div class="card-content">
-
-                  <div class="price">
-                    <span class="span">€29.00</span>
-                  </div>
-
-                  <h3>
-                    <a href="#" class="card-title">Coffee Bean Caffeine Eye Cream</a>
-                  </h3>
-
-                  <div class="card-rating">
-
-                    <div class="rating-wrapper" aria-label="5 start rating">
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                      <ion-icon name="star" aria-hidden="true"></ion-icon>
-                    </div>
-
-                    <p class="rating-text">5170 reviews</p>
-
-                  </div>
-
-                </div>
-
+              <p class="rating-text" id="product-11-reviews">5170 reviews</p>
+            </div>
+          </div>
+        </div>
+      </li>
+      
+      <li class="scrollbar-item">
+        <div class="shop-card">
+          <div class="card-banner img-holder" style="--width: 540; --height: 720;">
+            <img id="product-11-image" src="./assets/images/product-09.jpg" width="540" height="720" loading="lazy"
+              alt="Coffee Bean Caffeine Eye Cream" class="img-cover">
+      
+            <div class="card-actions">
+              <button class="action-btn" aria-label="add to cart">
+                <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
+              </button>
+              <button class="action-btn" aria-label="add to whishlist">
+                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
+              </button>
+              <button class="action-btn" aria-label="compare">
+                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
+              </button>
+            </div>
+          </div>
+      
+          <div class="card-content">
+            <div class="price">
+              <span id="product-11-price" class="span">€29.00</span>
+            </div>
+            <h3>
+              <a href="#" id="product-11-title" class="card-title">Coffee Bean Caffeine Eye Cream</a>
+            </h3>
+            <div class="card-rating">
+              <div class="rating-wrapper" aria-label="5 star rating">
+                <ion-icon name="star" aria-hidden="true"></ion-icon>
+                <ion-icon name="star" aria-hidden="true"></ion-icon>
+                <ion-icon name="star" aria-hidden="true"></ion-icon>
+                <ion-icon name="star" aria-hidden="true"></ion-icon>
+                <ion-icon name="star" aria-hidden="true"></ion-icon>
               </div>
-            </li>
+              <p class="rating-text" id="product-11-reviews">5170 reviews</p>
+            </div>
+          </div>
+        </div>
+      </li>
+      
+      <script>
+        fetch('https://fakestoreapi.com/products/11')
+          .then(res => res.json())
+          .then(product => {
+            // Dynamically update the content using the fetched product data for product 11
+            document.getElementById('product-11-image').src = product.image; // Update product image
+            document.getElementById('product-11-title').textContent = product.title; // Update product title
+            document.getElementById('product-11-price').textContent = `€${product.price.toFixed(2)}`; // Update product price
+            document.getElementById('product-11-reviews').textContent = `${product.rating.count} reviews`; // Update reviews count
+          })
+          .catch(error => console.error('Error fetching product 11:', error));
+      </script>
+      
 
             <li class="scrollbar-item">
               <div class="shop-card">
@@ -1054,11 +1078,11 @@
 
                 <p class="card-subtitle">New Collection</p>
 
-                <h2 class="h2 card-title">Discover Our Autumn Skincare</h2>
+                <h2 class="h2 card-title">Discover Our Winter Skincare</h2>
 
                 <a href="#" class="btn btn-secondary">Explore More</a>
 
-                <div class="has-bg-image" style="background-image: url('./assets/images/banner-1.jpg')"></div>
+                <div class="has-bg-image" style="background-image: url('./assets/images/banner-1.jpeg')"></div>
 
               </div>
             </li>
@@ -1095,7 +1119,7 @@
       <section class="section feature" aria-label="feature" data-section>
         <div class="container">
 
-          <h2 class="h2-large section-title">Why Shop with Glowing?</h2>
+          <h2 class="h2-large section-title">Why Shop with Silken Pearl?</h2>
 
           <ul class="flex-list">
 
@@ -1105,11 +1129,10 @@
                 <img src="./assets/images/feature-1.jpg" width="204" height="236" loading="lazy" alt="Guaranteed PURE"
                   class="card-icon">
 
-                <h3 class="h3 card-title">Guaranteed PURE</h3>
+                <h3 class="h3 card-title">Embrace Comfort, Boost Confidence</h3>
 
                 <p class="card-text">
-                  All Grace formulations adhere to strict purity standards and will never contain harsh or toxic
-                  ingredients
+                  Because comfort and confidence go hand in hand.
                 </p>
 
               </div>
@@ -1162,44 +1185,50 @@
 
       <section class="section offer" id="offer" aria-label="offer" data-section>
         <div class="container">
-
           <figure class="offer-banner">
-            <img src="./assets/images/offer-banner-1.jpg" width="305" height="408" loading="lazy" alt="offer products"
-              class="w-100">
-
-            <img src="./assets/images/offer-banner-2.jpg" width="450" height="625" loading="lazy" alt="offer products"
-              class="w-100">
+            <img id="offer-image-1" width="305" height="408" loading="lazy" alt="offer products" class="w-100">
+            <img id="offer-image-2" width="450" height="625" loading="lazy" alt="offer products" class="w-100">
           </figure>
-
           <div class="offer-content">
-
             <p class="offer-subtitle">
               <span class="span">Special Offer</span>
-
-              <span class="badge" aria-label="20% off">-20%</span>
+              <span class="badge" aria-label="20% off" id="offer-discount">-20%</span>
             </p>
-
-            <h2 class="h2-large section-title">Mountain Pine Bath Oil</h2>
-
-            <p class="section-text">
+            <h2 class="h2-large section-title" id="offer-title">Mountain Pine Bath Oil</h2>
+            <p class="section-text" id="offer-description">
               Made using clean, non-toxic ingredients, our products are designed for everyone.
             </p>
-
             <div class="countdown">
-
-              <span class="time" aria-label="days">15</span>
-              <span class="time" aria-label="hours">21</span>
-              <span class="time" aria-label="minutes">46</span>
-              <span class="time" aria-label="seconds">08</span>
-
+              <span class="time" id="days" aria-label="days">15</span> :
+              <span class="time" id="hours" aria-label="hours">21</span> :
+              <span class="time" id="minutes" aria-label="minutes">46</span> :
+              <span class="time" id="seconds" aria-label="seconds">08</span>
             </div>
-
-            <a href="#" class="btn btn-primary">Get Only €39.00</a>
-
+            <a href="#" class="btn btn-primary" id="offer-price">Get Only €39.00</a>
           </div>
-
         </div>
       </section>
+      
+      <script>
+        // Fetch product 7 data
+        fetch('https://fakestoreapi.com/products/7')
+          .then(res => res.json())
+          .then(product => {
+            // Update content with product 7 data
+            document.getElementById('offer-title').textContent = product.title;
+            document.getElementById('offer-description').textContent = product.description;
+            document.getElementById('offer-image-1').src = product.image;  // Use image from API
+            document.getElementById('offer-image-2').src = product.image;  // Use image from API
+            document.getElementById('offer-price').textContent = `Get Only €${product.price.toFixed(2)}`;
+            document.getElementById('offer-discount').textContent = `-${Math.round(product.price * 0.2)}%`;
+          })
+          .catch(error => console.error('Error fetching product 7:', error));
+      
+        // Fetch product 8 data (You can use this data as needed)
+        
+      </script>
+      
+      
 
 
 
@@ -1271,7 +1300,7 @@
                 </h3>
 
                 <a href="#" class="btn-link">
-                  <span class="span">Our Store</span>
+                  <span class="span">Frequently Question & Answer</span>
 
                   <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
                 </a>
@@ -1286,11 +1315,7 @@
 
     </article>
   </main>
-  <h5>Product List</h5>
-  <ul id="productList" class="product-list">
-      <!-- Product cards will be inserted here -->
-  </ul>
-
+  
 
 
 

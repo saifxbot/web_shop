@@ -117,3 +117,35 @@ registerBtn?.addEventListener("click", () => {
 toggleLoginBtn?.addEventListener("click", () => {
   container?.classList.remove("active");
 });
+
+
+// Set the target date (e.g., December 31, 2024, at 23:59:59)
+const targetDate = new Date(2024, 11, 31, 23, 59, 59).getTime();
+
+function updateCountdown() {
+  const now = new Date().getTime(); // Get the current time
+  const difference = targetDate - now; // Calculate time difference
+
+  if (difference <= 0) {
+    // If countdown is over
+    document.querySelector(".countdown").innerHTML = "Offer Expired!";
+    clearInterval(countdownInterval); // Stop the timer
+    return;
+  }
+
+  // Calculate time units
+  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+  // Update the HTML elements
+  document.getElementById("days").textContent = days.toString().padStart(2, "0");
+  document.getElementById("hours").textContent = hours.toString().padStart(2, "0");
+  document.getElementById("minutes").textContent = minutes.toString().padStart(2, "0");
+  document.getElementById("seconds").textContent = seconds.toString().padStart(2, "0");
+}
+
+// Run updateCountdown every second
+const countdownInterval = setInterval(updateCountdown, 1000);
+updateCountdown(); // Call immediately to avoid delay

@@ -672,7 +672,7 @@ body {
 .shop-card .rating-text {
   font-size: var(--fs-8);
   font-weight: var(--fw-400);
-  line-height: 1;
+   line-height: 1;
 }
 
 
@@ -1410,3 +1410,6 @@ body {
   .offer .container { gap: 120px; }
 
 }
+
+
+
