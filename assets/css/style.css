@@ -593,6 +593,8 @@ body {
 
 
 
+
+
 /*-----------------------------------*\
   #COLLECTION
 \*-----------------------------------*/
@@ -625,6 +627,11 @@ body {
 /* Card Title */
 .collection-card .card-title {
   margin-block-end: 20px; /* Adjust margin for better alignment */
+  font-size: large;
+  text-align: center;
+  color: #f1f1f1;
+  text-shadow: #000000;
+  background: rgba(0, 0, 0, 0.292);
 }
 
 /* Card Text */
@@ -1375,6 +1382,29 @@ body {
   .footer-list:last-child { grid-column: auto; }
 
   .footer .logo img { width: 190px; }
+
+  #subscribeBtn {
+    position: relative; /* Or absolute depending on the desired effect */
+    top: -10%; /* Moves the button 5% higher than its current position */
+    left: 90.5%; /* Moves the button to the right by 50% of the container width */
+    transform: translateX(-50%); /* Centers the button horizontally */
+    padding: 3px 5px; /* Adjusted padding for a smaller button */
+    font-size: 1vw; /* Smaller font size */
+    background-color: #0b0a0a; /* Button color */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#subscribeBtn:hover {
+    background-color: #b1b0b0;
+}
+
+  
+  
+  
 
 }
 
