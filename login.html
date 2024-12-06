@@ -6,12 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="./assets/css/login.css">
-    <title>Login-Silken Pearl</title>
+    <title>Login - Silken Pearl</title>
 </head>
 
 <body>
     <div class="container" id="container">
-        <div class="form-container sign-up">
+        <div class="form-container sign-up" id="signUpForm">
             <form>
                 <h1>Create Account</h1>
                 <div class="social-icons">
@@ -20,15 +20,16 @@
                     <a href="#" class="icon"><i class="fa-brands fa-github"></i></a>
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
-                <span>or use your email for registeration</span>
+                <span>or use your email for registration</span>
                 <input type="text" placeholder="Name">
                 <input type="email" placeholder="Email">
                 <input type="password" placeholder="Password">
-                <button>Sign Up</button>
+                <button type="submit">Sign Up</button>
             </form>
         </div>
+
         <div class="form-container sign-in">
-            <form>
+            <form id="signInForm">
                 <h1>Sign In</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -37,31 +38,31 @@
                     <a href="#" class="icon"><i class="fa-brands fa-linkedin-in"></i></a>
                 </div>
                 <span>or use your ID/ email password</span>
-                <input type="email" placeholder="Email">
-                <input type="password" placeholder="Password">
+                <input type="text" id="username" placeholder="Username">
+                <input type="password" id="password" placeholder="Password">
                 <a href="#">Forget Your Password?</a>
-                <button>Sign In</button>
+                <button type="submit">Sign In</button>
             </form>
         </div>
+
         <div class="toggle-container">
             <div class="toggle">
                 <div class="toggle-panel toggle-left">
                     <h1>Welcome Back!</h1>
-                    <p>Enter your personal details to use all of site features</p>
-                    <button class="hidden" id="login">Sign In</button>
+                    <p>Enter your personal details to use all site features</p>
+                    <button class="hidden" id="loginBtn">Sign In</button>
                 </div>
                 <div class="toggle-panel toggle-right">
                     <h1>Hello!</h1>
-                    <p>Register with your personal details to use all of site features</p>
-                    <button class="hidden" id="register">Sign Up</button>
+                    <p>Register with your personal details to sign up</p>
+                    <button class="hidden" id="registerBtn">Sign Up</button>
                 </div>
             </div>
         </div>
     </div>
 
     <script src="./assets/js/script.js"></script>
-    <script src="./assets/js/script_api.js"></script>
-
+    <script src="./assets/js/api.js" defer></script>
 </body>
 
 </html>

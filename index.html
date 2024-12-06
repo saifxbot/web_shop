@@ -40,6 +40,18 @@
   <!-- 
     - #HEADER
   -->
+  <div id="sale-popup" class="popup hidden">
+    <div class="popup-content">
+      <button id="close-popup" class="close-btn">&times;</button>
+      <video class="popup-media" autoplay loop muted>
+        <source src="./assets/images/popup-1.mp4" type="video/mp4">
+        <source src="./assets/videos/sale-promotion.webm" type="video/webm">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </div>
+  
+  
 
   <header class="header">
 
@@ -274,7 +286,7 @@
 
       <section class="section collection" id="collection" aria-label="collection" data-section>
         <div class="container">
-
+          
           <ul class="collection-list">
 
             <li>
@@ -285,7 +297,7 @@
             
             <script>
               // Fetch product data
-              fetch('https://fakestoreapi.com/products/5')
+              fetch('https://fakestoreapi.com/products/20')
                 .then(res => res.json())
                 .then(product => {
                   // Select the card container
@@ -1479,7 +1491,6 @@
   <a href="#top" class="back-top-btn" aria-label="back to top" data-back-top-btn>
     <ion-icon name="arrow-up" aria-hidden="true"></ion-icon>
   </a>
-
 
 
 

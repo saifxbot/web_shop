@@ -1,105 +1,106 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Fetch product data
-    fetch('https://fakestoreapi.com/products')
-        .then(response => response.json())
-        .then(data => {
-            const productList = document.querySelector('#productList');
+//for login//
+document.addEventListener('DOMContentLoaded', () => {
+    const signInForm = document.getElementById('signInForm');
+    const loginButton = document.getElementById('loginBtn'); // Updated id for the login button
+    const registerButton = document.getElementById('registerBtn'); // Updated id for the register button
 
-            // Check if the productList element is found
-            if (productList) {
-                // Loop through the data and create product cards
-                data.forEach(product => {
-                    // Create a list item for each product
-                    const listItem = document.createElement('li');
-                    listItem.classList.add('scrollbar-item');
+    if (signInForm) {
+        signInForm.addEventListener('submit', async (e) => {
+            e.preventDefault(); // Prevent the default form submission
 
-                    // Create a card container for each product
-                    const card = document.createElement('div');
-                    card.classList.add('shop-card');
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
 
-                    // Create card banner with product image
-                    const cardBanner = document.createElement('div');
-                    cardBanner.classList.add('card-banner', 'img-holder');
-                    cardBanner.style.cssText = 'width: 100%; height: auto; position: relative;';
+            console.log('Form submitted with:', username, password); // Debug log to check inputs
 
-                    const img = document.createElement('img');
-                    img.src = product.image;
-                    img.alt = product.title;
-                    img.loading = 'lazy';
-                    img.classList.add('img-cover');
-
-                    // Make the image adjustable and responsive
-                    img.style.width = '100%';  // Ensure image stretches to fit the container
-                    img.style.height = 'auto'; // Maintain aspect ratio
-
-                    // Append image to the banner
-                    cardBanner.appendChild(img);
-
-                    // Create card actions (like Add to Cart, Wishlist, etc.)
-                    const cardActions = document.createElement('div');
-                    cardActions.classList.add('card-actions');
-
-                    const addToCartButton = document.createElement('button');
-                    addToCartButton.classList.add('action-btn');
-                    addToCartButton.setAttribute('aria-label', 'add to cart');
-                    addToCartButton.innerHTML = '<ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>';
-                    cardActions.appendChild(addToCartButton);
-
-                    const addToWishlistButton = document.createElement('button');
-                    addToWishlistButton.classList.add('action-btn');
-                    addToWishlistButton.setAttribute('aria-label', 'add to wishlist');
-                    addToWishlistButton.innerHTML = '<ion-icon name="star-outline" aria-hidden="true"></ion-icon>';
-                    cardActions.appendChild(addToWishlistButton);
-
-                    const compareButton = document.createElement('button');
-                    compareButton.classList.add('action-btn');
-                    compareButton.setAttribute('aria-label', 'compare');
-                    compareButton.innerHTML = '<ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>';
-                    cardActions.appendChild(compareButton);
-
-                    // Add card banner and actions to the card
-                    card.appendChild(cardBanner);
-                    card.appendChild(cardActions);
-
-                    // Create card content with title, price, and description
-                    const cardContent = document.createElement('div');
-                    cardContent.classList.add('card-content');
-
-                    // Add title
-                    const title = document.createElement('h3');
-                    const titleLink = document.createElement('a');
-                    titleLink.href = '#';
-                    titleLink.classList.add('card-title');
-                    titleLink.textContent = product.title;
-                    title.appendChild(titleLink);
-
-                    // Add price
-                    const price = document.createElement('p');
-                    price.classList.add('card-price');
-                    price.textContent = `$${product.price}`;
-
-                    // Add description
-                    const description = document.createElement('p');
-                    description.classList.add('card-description');
-                    description.textContent = product.description;
-
-                    // Add title, price, and description to card content
-                    cardContent.appendChild(title);
-                    cardContent.appendChild(price);
-                    cardContent.appendChild(description);
-
-                    // Add card content to the card
-                    card.appendChild(cardContent);
-
-                    // Append the card to the list item
-                    listItem.appendChild(card);
-
-                    // Append the list item to the product list container
-                    productList.appendChild(listItem);
+            try {
+                const response = await fetch('https://fakestoreapi.com/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ username, password }),
                 });
-            } else {
-                console.error('Product list element not found.');
+
+                if (!response.ok) {
+                    throw new Error('Invalid username or password');
+                }
+
+                const data = await response.json();
+                console.log('Login successful:', data);
+
+                // Store the token (if provided by the API)
+                localStorage.setItem('token', data.token);
+
+                // Redirect or update the UI upon successful login
+                alert('Login successful! Redirecting...');
+                window.location.href = './dashboard.html'; // Change this to your desired page
+            } catch (error) {
+                console.error('Login error:', error);
+                alert(error.message); // Display error message
             }
-        })
-        .catch(error => console.error('Error fetching data:', error));
+        });
+    } else {
+        console.error('Sign-in form not found');
+    }
+});
+
+//for sign up//
+document.addEventListener("DOMContentLoaded", () => {
+    const signUpForm = document.querySelector("#signUpForm form");
+
+    signUpForm.addEventListener("submit", async (event) => {
+        event.preventDefault(); // Prevent default form submission
+
+        // Collect input values
+        const firstname = signUpForm.querySelector('input[placeholder="Name"]').value.trim();
+        const email = signUpForm.querySelector('input[placeholder="Email"]').value.trim();
+        const password = signUpForm.querySelector('input[placeholder="Password"]').value.trim();
+
+        // Example data (extend as needed for address, phone, etc.)
+        const userData = {
+            email: email,
+            username: email.split('@')[0], // Example: Create a username from the email
+            password: password,
+            name: {
+                firstname: firstname,
+                lastname: "Doe" // You can extend the form to collect last name
+            },
+            address: {
+                city: "kilcoole",
+                street: "7835 new road",
+                number: 3,
+                zipcode: "12926-3874",
+                geolocation: {
+                    lat: "-37.3159",
+                    long: "81.1496"
+                }
+            },
+            phone: "1-570-236-7033" // Add a field to collect phone if needed
+        };
+
+        try {
+            const response = await fetch("https://fakestoreapi.com/users", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(userData),
+            });
+
+            if (response.ok) {
+                const json = await response.json();
+                console.log("Registration Successful:", json);
+                alert("User registered successfully!");
+                signUpForm.reset(); // Clear the form fields
+            } else {
+                const error = await response.json();
+                console.error("Error:", error);
+                alert(`Error: ${error.message}`);
+            }
+        } catch (error) {
+            console.error("Network Error:", error);
+            alert("An error occurred while signing up. Please try again later.");
+        }
+    });
 });

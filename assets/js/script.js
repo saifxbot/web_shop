@@ -103,20 +103,31 @@ cartBtn?.addEventListener("click", function () {
   window.location.href = "login.html"; // Replace with the actual login page URL
 });
 
-/**
- * Register and login toggle functionality
- */
-const container = document.getElementById("container");
-const registerBtn = document.getElementById("register");
-const toggleLoginBtn = document.getElementById("login");
+// script.js
 
-registerBtn?.addEventListener("click", () => {
-  container?.classList.add("active");
+document.addEventListener('DOMContentLoaded', () => {
+  const container = document.querySelector('.container');
+  const signUpBtn = document.getElementById('registerBtn');
+  const signInBtn = document.getElementById('loginBtn');
+  
+  // Function to show the Sign Up form and hide Sign In form
+  function showSignUp() {
+      container.classList.add('active');  // Add 'active' class to trigger transitions
+  }
+
+  // Function to show the Sign In form and hide Sign Up form
+  function showSignIn() {
+      container.classList.remove('active');  // Remove 'active' class to revert to sign-in
+  }
+
+  // Add event listeners for toggle buttons to switch forms
+  signUpBtn.addEventListener('click', showSignUp);
+  signInBtn.addEventListener('click', showSignIn);
+
+  // Initially show the Sign In form when the page loads
+  showSignIn();
 });
 
-toggleLoginBtn?.addEventListener("click", () => {
-  container?.classList.remove("active");
-});
 
 
 // Set the target date (e.g., December 31, 2024, at 23:59:59)
@@ -149,3 +160,21 @@ function updateCountdown() {
 // Run updateCountdown every second
 const countdownInterval = setInterval(updateCountdown, 1000);
 updateCountdown(); // Call immediately to avoid delay
+
+// Show popup
+document.getElementById('sale-popup').classList.remove('hidden');
+
+// Close popup when close button is clicked
+document.getElementById('close-popup').addEventListener('click', function() {
+  document.getElementById('sale-popup').classList.add('hidden');  // Hide the popup
+});
+
+// Close popup when clicking anywhere outside the popup content (background)
+document.getElementById('sale-popup').addEventListener('click', function(event) {
+  // Only close the popup if the background (not the content) is clicked
+  if (event.target === this) { 
+    document.getElementById('sale-popup').classList.add('hidden');  // Hide the popup
+  }
+});
+
+
