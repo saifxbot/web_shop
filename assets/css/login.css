@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Courier+Prime&family=Merienda&family=Montserrat:wght@300;400;500;600;700&family=Nunito:wght@200;300;400;500;600&family=Roboto:wght@100;300;400;500&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -7,24 +8,41 @@
 }
 
 body {
-    background-color: #f4e2d8;
-    background: linear-gradient(to right, #f4e2d8, #d9bfa3);
+    background-color: #fff; /* White color */
+    background: linear-gradient(45deg, #fff, #bc8956); /* Gradient between white and normal brown */
+    background-size: 400% 400%;
+    animation: gradientAnimation 10s ease infinite;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     height: 100vh;
+    overflow: hidden;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .container {
-    background-color: #fff;
+    background-color: #fff; /* White background */
     border-radius: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
     position: relative;
     overflow: hidden;
     width: 768px;
     max-width: 100%;
     min-height: 480px;
+    padding: 20px;
+    color: #333; /* Dark text color for contrast */
 }
 
 .container p {
@@ -32,21 +50,23 @@ body {
     line-height: 20px;
     letter-spacing: 0.3px;
     margin: 20px 0;
+    color: #fff9f9; /* Slightly lighter text color */
 }
 
 .container span {
     font-size: 12px;
+    color: #777; /* Even lighter text color */
 }
 
 .container a {
-    color: #5a4231;
+    color: #5a4231; /* Dark brown color */
     font-size: 13px;
     text-decoration: none;
     margin: 15px 0 10px;
 }
 
 .container button {
-    background-color: #8b5e34;
+    background-color: #bc8956; /* Normal brown button */
     color: #fff;
     font-size: 12px;
     padding: 10px 45px;
@@ -57,6 +77,12 @@ body {
     text-transform: uppercase;
     margin-top: 10px;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.container button:hover, .container button:focus {
+    background-color: #bc8956; /* Lighter brown on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Subtle shadow effect */
 }
 
 .container button.hidden {
@@ -65,7 +91,7 @@ body {
 }
 
 .container form {
-    background-color: #fff;
+    background-color: #fff; /* White background for the form */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -75,7 +101,7 @@ body {
 }
 
 .container input {
-    background-color: #f4e2d8;
+    background-color: #f4e2d8; /* Light brown input field */
     border: none;
     margin: 8px 0;
     padding: 10px 15px;
@@ -83,6 +109,11 @@ body {
     border-radius: 8px;
     width: 100%;
     outline: none;
+    color: #333;
+}
+
+.container input:focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Soft border focus effect */
 }
 
 .form-container {
@@ -132,7 +163,7 @@ body {
 }
 
 .social-icons a {
-    border: 1px solid #ccc;
+    border: 1px solid #ccc; /* Gray border for icons */
     border-radius: 20%;
     display: inline-flex;
     justify-content: center;
@@ -140,6 +171,13 @@ body {
     margin: 0 3px;
     width: 40px;
     height: 40px;
+    background-color: #f4e2d8; /* Light brown background for icons */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.social-icons a:hover {
+    background-color: #bc8956; /* Normal brown on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Subtle shadow effect on hover */
 }
 
 .toggle-container {
@@ -160,9 +198,9 @@ body {
 }
 
 .toggle {
-    background-color: #a5723e;
+    background-color: #b47e4c; /* Normal brown */
     height: 100%;
-    background: linear-gradient(to right, #d9bfa3, #a5723e);
+    background: linear-gradient(to right, #bc8956, #bc8956);
     color: #fff;
     position: relative;
     left: -100%;

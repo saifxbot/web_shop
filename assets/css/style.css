@@ -1,19 +1,3 @@
-/*-----------------------------------*\
-  #style.css
-\*-----------------------------------*/
-
-/**
- * copyright 2022 codewithsadee
- */
-
-
-
-
-
-/*-----------------------------------*\
-  #CUSTOM PROPERTY
-\*-----------------------------------*/
-
 :root {
 
   /**
@@ -215,6 +199,11 @@ body {
   padding: 10px 30px;
   border-radius: var(--radius-3);
   transition: var(--transition-1);
+  position: fixed; /* Keeps the button positioned relative to the viewport */
+  bottom: 4%; /* Adjusts the vertical position dynamically relative to screen height */
+  left: 5%; /* Adjusts the horizontal position dynamically relative to screen width */
+  transform: translate(-5%, -5%);
+  
 }
 
 .btn-primary,
@@ -223,7 +212,7 @@ body {
   color: var(--white);
 }
 
-.btn-primary:is(:hover, :focus) { background-color: var(--hoockers-green); }
+.btn-primary:is(:hover, :focus) { background-color: var(--light-gray); }
 
 .btn-secondary {
   background-color: var(--white);
@@ -514,27 +503,91 @@ body {
   #HERO
 \*-----------------------------------*/
 
-.hero { padding-block-start: 0; }
+/* Base Hero Styles */
+.hero {
+  padding-block-start: 0;
+  display: flex; /* Align child elements flexibly */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center;
+  justify-content: center;
+}
 
+/* Hero Card */
+/* Base Hero Styles */
+.hero {
+  padding-block-start: 0;
+  display: flex; /* Align child elements flexibly */
+  flex-direction: column; /* Stack items vertically */
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Prevent content overflow */
+  width: 100%; /* Ensure full-width container */
+}
+
+/* Hero Card */
 .hero-card {
-  background-color: var(--light-gray);
-  padding: 100px 15px;
-  background-position: 40%;
+  background-color: var(--light-gray, #f0f0f0); /* Fallback color */
+  aspect-ratio: 3 / 1; /* Maintain consistent aspect ratio */
+  width: 100%; /* Full width of the container */
+  max-width: 2000px; /* Limit the maximum width */
+  margin: 0 auto; /* Center the card */
+  background-size: cover; /* Scale background to fill */
+  background-position: center; /* Center the image focal point */
+  display: flex; /* Enable alignment of content inside */
+  align-items: center; /* Center align content vertically */
+  justify-content: center; /* Center align content horizontally */
+  padding: 5%; /* Reduce padding for consistency */
+  border-radius: var(--radius-3, 10px); /* Fallback border radius */
+  transition: all 0.3s ease-in-out; /* Smooth transitions */
 }
 
+/* Hero Text */
 .hero-text {
-  font-size: var(--fs-6);
-  margin-block: 16px 30px;
+  font-size: var(--fs-6, 1.25rem); /* Fallback font size */
+  color: var(--black, #333); /* Fallback text color */
+  text-align: center; /* Center-align text */
+  margin: 1rem 0; /* Ensure consistent spacing */
 }
 
+/* Price Styling */
 .hero .price {
-  color: var(--black);
-  font-size: var(--fs-5);
-  font-weight: var(--fw-600);
-  margin-block-end: 20px;
+  color: var(--black, #333); /* Fallback text color */
+  font-size: var(--fs-5, 1.5rem); /* Fallback font size */
+  font-weight: var(--fw-600, 600); /* Fallback font weight */
+  margin: 0.5rem 0; /* Consistent spacing */
 }
 
-.hero .scrollbar-item { min-width: 100%; }
+/* Scrollbar Item */
+.hero .scrollbar-item {
+  min-width: 100%;
+  max-width: 100%; /* Prevent overflow */
+  height: auto; /* Maintain proportional height */
+}
+
+/* Responsive Adjustments for Tablets */
+@media (max-width: 768px) {
+  .hero-card {
+    aspect-ratio: 4 / 3; /* Adjust aspect ratio for tablets */
+    padding: 5%; /* Adjust padding for medium screens */
+  }
+
+  .hero-text {
+    font-size: var(--fs-7, 1rem); /* Reduce font size slightly */
+  }
+}
+
+/* Responsive Adjustments for Small Screens */
+@media (max-width: 480px) {
+  .hero-card {
+    aspect-ratio: 1 / 1; /* Square banner for small screens */
+    padding: 3%; /* Reduce padding for small screens */
+  }
+
+  .hero-text {
+    font-size: var(--fs-8, 0.875rem); /* Further reduce font size */
+  }
+}
+
 
 
 
@@ -544,13 +597,20 @@ body {
   #COLLECTION
 \*-----------------------------------*/
 
-.collection { padding-block-start: 0; }
-
-.collection-list {
-  display: grid;
-  gap: 15px;
+/* Collection Section */
+.collection {
+  padding-block-start: 0;
 }
 
+/* Collection List */
+.collection-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+  gap: 20px; /* Adds space between grid items */
+  padding: 20px; /* Adds padding around the grid */
+}
+
+/* Collection Card */
 .collection-card {
   background-color: var(--light-gray);
   min-height: 400px;
@@ -558,16 +618,28 @@ body {
   padding-block-end: 30px;
   display: flex;
   flex-direction: column;
+  border-radius: 20px; /* Optional: Add rounded corners */
+  box-shadow: 0 4px 6px rgba(37, 28, 26, 0.199); /* Optional: Add subtle shadow for better separation */
 }
 
-.collection-card .card-title { margin-block-end: 12px; }
+/* Card Title */
+.collection-card .card-title {
+  margin-block-end: 20px; /* Adjust margin for better alignment */
+}
 
+/* Card Text */
 .collection-card .card-text {
-  color: var(--black);
-  font-size: var(--fs-6);
+  color: var(--white, #fff); /* Make the text white */
+  font-size: var(--fs-4);
   font-weight: var(--fw-600);
-  margin-block-end: auto;
+  margin-top: auto; /* Push text towards the bottom of the card */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.514); /* Add a subtle shadow for better contrast */
+  background: rgba(0, 0, 0, 0.292); /* Add a semi-transparent background */
+  padding: 10px; /* Add padding for better spacing */
+  border-radius: 10px; /* Optional: Add rounded corners */
 }
+
+
 
 
 
@@ -577,28 +649,93 @@ body {
   #SHOP
 \*-----------------------------------*/
 
-.shop .title-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: 18px;
-  margin-block-end: 50px;
+/* Shop Card */
+.shop-card {
+  border-radius: 10px; /* Rounded corners */
+  overflow: hidden;
+  background-color: var(--white, #fff); /* Clean background */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: box-shadow 0.3s ease-in-out; /* Smooth transition */
+  display: flex; /* Use flexbox for layout */
+  flex-direction: column; /* Stack the content vertically */
+  height: 400px; /* Set fixed height for all cards */
+  max-width: 300px; /* Limit the width */
+  width: 100%; /* Ensure it fits within its container */
+  margin: 10px; /* Add spacing between cards */
 }
 
-.shop .btn-link:is(:hover, :focus) { color: var(--hoockers-green); }
+.shop-card:is(:hover, :focus-within) {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Larger shadow on hover */
+}
 
+/* Ensure the card's content fills the space */
 .shop-card .card-banner {
   position: relative;
+  height: 60%; /* Take up 60% of the card height */
   overflow: hidden;
 }
 
-.shop-card .badge {
-  position: absolute;
-  top: 20px;
-  left: 20px;
+.shop-card .card-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensure image covers the area */
+  transition: transform 0.3s ease-in-out;
 }
 
+.shop-card:is(:hover) .card-banner img {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Card Content */
+.shop-card .card-content {
+  padding: 10px 15px;
+  text-align: center;
+  flex-grow: 1; /* Make sure content takes the remaining space */
+}
+
+/* Price, Rating, and Text */
+.shop-card .price {
+  font-size: var(--fs-5, 16px);
+  font-weight: var(--fw-600, 600);
+  color: var(--black, #000);
+  margin-bottom: 5px;
+}
+
+.shop-card .del {
+  font-size: var(--fs-9, 14px);
+  color: var(--gray, #888);
+  text-decoration: line-through;
+}
+
+.shop-card .card-title {
+  color: var(--black, #000);
+  font-size: var(--fs-7, 18px);
+  font-weight: var(--fw-500, 500);
+  margin-block-end: 8px;
+  transition: color 0.3s ease;
+}
+
+.shop-card .card-title:is(:hover, :focus) {
+  text-decoration: underline;
+  color: var(--spanish-gray, #0a0a0a);
+}
+
+/* Rating Wrapper */
+.shop-card .rating-wrapper {
+  display: flex;
+  gap: 2px;
+  color: var(--spanish-gray, #050606);
+  font-size: 15px;
+  justify-content: center;
+}
+
+.shop-card .rating-text {
+  font-size: var(--fs-8, 12px);
+  font-weight: var(--fw-400, 400);
+  line-height: 1;
+}
+
+/* Card Actions */
 .shop-card .card-actions {
   position: absolute;
   top: 50%;
@@ -607,20 +744,7 @@ body {
   display: grid;
   gap: 10px;
   opacity: 0;
-  transition: var(--transition-2);
-}
-
-.shop-card .action-btn {
-  background-color: var(--white);
-  font-size: 24px;
-  padding: 12px;
-  border-radius: 50%;
-  transition: var(--transition-1);
-}
-
-.shop-card .action-btn:is(:hover, :focus) {
-  background-color: var(--black);
-  color: var(--white);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 .shop-card:is(:hover, :focus-within) .card-actions {
@@ -628,52 +752,21 @@ body {
   transform: translate(-20px, -50%);
 }
 
-.shop-card .card-content {
-  padding-block: 20px;
-  text-align: center;
+/* Action Buttons */
+.shop-card .action-btn {
+  background-color: var(--white, #ffffff);
+  font-size: 24px;
+  padding: 12px;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-.shop-card :is(.price, .card-rating, .rating-wrapper) {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 5px;
+.shop-card .action-btn:is(:hover, :focus) {
+  background-color: var(--spanish-gray, #fff7f7);
+  color: var(--white, #fff);
 }
 
-.shop-card .del {
-  font-size: var(--fs-9);
-  font-weight: var(--fw-400);
-}
-
-.shop-card .price .span {
-  color: var(--black);
-  font-weight: var(--fw-700);
-}
-
-.shop-card .card-title {
-  color: var(--black);
-  font-size: var(--fs-7);
-  font-weight: var(--fw-500);
-  margin-block-end: 8px;
-  transition: var(--transition-1);
-}
-
-.shop-card .card-title:is(:hover, :focus) {
-  text-decoration: underline;
-  color: var(--hoockers-green);
-}
-
-.shop-card .rating-wrapper {
-  gap: 2px;
-  color: var(--hoockers-green);
-  font-size: 15px;
-}
-
-.shop-card .rating-text {
-  font-size: var(--fs-8);
-  font-weight: var(--fw-400);
-   line-height: 1;
-}
 
 
 
