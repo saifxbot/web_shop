@@ -1509,7 +1509,7 @@ body {
 /* Popup content with 1:1 ratio */
 .popup-content {
   position: relative;
-  background: #fff;
+  background: #000000;
   padding: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -1529,7 +1529,7 @@ body {
   background: none;
   border: none;
   font-size: 24px;
-  color: #000000;
+  color: #ffffff;
   cursor: pointer;
 }
 
