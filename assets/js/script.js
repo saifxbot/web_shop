@@ -236,16 +236,27 @@ document.getElementById('cartBtn').addEventListener('click', openCartModal);
 // Add event listener for closing the modal
 document.getElementById('close-modal').addEventListener('click', closeCartModal);
 
-// Example of dynamically adding products to the cart when the "Add to Cart" button is clicked
-document.querySelectorAll('.action-btn[aria-label="add to cart"]').forEach((button, index) => {
-    button.addEventListener('click', () => {
-        // Example product data (you can make this dynamic based on each product)
-        const product = {
-            title: `Product ${index + 1}`, // Product title (dynamic for each product)
-            price: (index + 1) * 10, // Product price (example, change to dynamic data)
-            image: `./assets/images/product-0${index + 1}.jpg` // Product image (example)
-        };
+// Fetch product data and set up event listeners for the "Add to Cart" buttons
+fetch('https://fakestoreapi.com/products') // Fetch all products
+    .then(res => res.json())
+    .then(products => {
+        // Loop through products and add event listeners to each "Add to Cart" button
+        document.querySelectorAll('.action-btn[aria-label="add to cart"]').forEach((button, index) => {
+            button.addEventListener('click', () => {
+                // Get the specific product data from the API
+                const product = products[index]; // Use index to get the corresponding product
+                
+                // Create product object for cart
+                const cartProduct = {
+                    title: product.title, // Product title
+                    price: product.price, // Product price
+                    image: product.image // Product image
+                };
 
-        addToCart(product); // Add the product to the cart
-    });
-});
+                // Add product to the cart
+                addToCart(cartProduct);
+            });
+        });
+    })
+    .catch(error => console.error('Error fetching products:', error));
+

@@ -401,7 +401,7 @@ body {
 .nav-open-btn {
   width: 26px;
   display: grid;
-  gap: 6px;
+  gap: 60px;
   padding-block: 5px;
 }
 
@@ -621,7 +621,8 @@ body {
   display: flex;
   flex-direction: column;
   border-radius: 20px; /* Optional: Add rounded corners */
-  box-shadow: 0 4px 6px rgba(37, 28, 26, 0.199); /* Optional: Add subtle shadow for better separation */
+  box-shadow: 0 4px 6px rgba(37, 28, 26, 0.349); /* Optional: Add subtle shadow for better separation */
+  justify-content: space-between; /* Space out elements within the card */
 }
 
 /* Card Title */
@@ -629,21 +630,49 @@ body {
   margin-block-end: 20px; /* Adjust margin for better alignment */
   font-size: large;
   text-align: center;
-  color: #f1f1f1;
+  color: #f5f1f1;
   text-shadow: #000000;
-  background: rgba(0, 0, 0, 0.292);
+  padding: 10px; /* Optional: Add padding for title */
+  border-radius: 10px; /* Optional: Add rounded corners */
 }
 
 /* Card Text */
 .collection-card .card-text {
   color: var(--white, #fff); /* Make the text white */
-  font-size: var(--fs-4);
+  font-size: var(--fs-8);
   font-weight: var(--fw-600);
   margin-top: auto; /* Push text towards the bottom of the card */
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.514); /* Add a subtle shadow for better contrast */
-  background: rgba(0, 0, 0, 0.292); /* Add a semi-transparent background */
   padding: 10px; /* Add padding for better spacing */
   border-radius: 10px; /* Optional: Add rounded corners */
+  text-align: center; /* Center align the card text */
+}
+
+/* Button */
+.collection-card .btn-link {
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.75rem;
+  color: var(--white);
+  background-color: black;
+  padding: 1rem 2rem; /* Add padding for the button */
+  border-radius: 0.45em;
+  text-decoration: none;
+  transition: background-color 300ms ease-in-out;
+}
+
+.collection-card .btn-link:hover {
+  background-color: hsl(34, 93%, 46%);
+}
+
+.collection-card .btn-link .span {
+  margin-right: 0.5rem;
+}
+
+.collection-card .btn-link ion-icon {
+  font-size: 1.25rem;
 }
 
 
@@ -1591,15 +1620,12 @@ body {
    */
 
   .feature .section-title { margin-block-end: 60px; }
-
   .feature .flex-list {
     gap: 100px;
     padding-inline: 50px;
   }
 
   .feature .flex-item { max-width: calc(33.33% - 66.66px); }
-
-
 
   /**
    * OFFER
@@ -1767,16 +1793,23 @@ body {
 }
 
 /* Cart Button Badge Style */
-#cart-badge {
+.cart-badge {
   position: absolute;
-  top: -5px;
+  top: 0px;
   right: -5px;
-  background-color: red;
+  background-color: rgb(5, 5, 5);
   color: white;
   padding: 5px 10px;
-  border-radius: 50%;
+  border-radius: 100%;
   font-size: 14px;
   font-weight: bold;
+  line-height: 1; /* Adjust line spacing */
+  text-align: center; /* Centers text horizontally */
+  display: flex; /* Enables vertical alignment */
+  justify-content: center; /* Centers content horizontally */
+  align-items: center; /* Centers content vertically */
+}
+
 }
 
 #cartBtn {
