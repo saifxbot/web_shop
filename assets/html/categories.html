@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Categories</title>
   <style>
-    /* Global Reset */
+/* Global Reset */
 * {
   margin: 0;
   padding: 0;
@@ -72,14 +72,19 @@ h2 {
 
 /* Product Cards */
 .product {
-  background: #fff;
+  background: #ffffff;
   border-radius: 12px;
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
   padding: 20px;
   position: relative;
   width: 100%;
-  max-width: 300px;
+  max-width: 300px;  /* Adjusted max-width */
+  max-height: 500px;  /* Adjusted max-height to allow space for image */
   transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+  display: flex;
+  flex-direction: column;  /* Stack content vertically */
+  align-items: center;  /* Center the content horizontally */
+  justify-content: space-between;  /* Space between content */
 }
 
 .product:hover {
@@ -89,31 +94,73 @@ h2 {
 }
 
 .product img {
-  max-width: 100%;
+  width: 100%;  /* Ensure the image takes up full width of card */
+  max-height: 250px;  /* Adjust height to allow proper image display */
+  object-fit: contain;  /* Ensure the image is fully visible and fits within the card */
   border-radius: 8px;
   margin-bottom: 15px;
-  transition: transform 0.3s;
-}
-
-.product img:hover {
-  transform: scale(1.05);
 }
 
 .product h3 {
-  font-size: 1.5em;
+  font-size: 1.4em;
   color: #333;
   margin-bottom: 10px;
+  text-align: center;  /* Center the title text */
 }
 
 .product p {
   color: #666;
   margin-bottom: 10px;
+  text-align: center;  /* Center the description text */
+  flex-grow: 1;
+  height: 60px;
+  overflow: hidden;
 }
 
 .product .price {
   font-size: 1.2em;
   color: #007bff;
   font-weight: bold;
+  text-align: center;  /* Center the price text */
+}
+
+/* Responsive Design - for smaller screens */
+@media (max-width: 768px) {
+  .product {
+    max-width: 250px;  /* Adjust card size for smaller screens */
+    max-height: 450px;  /* Adjust card height for smaller screens */
+  }
+
+  .product img {
+    max-height: 200px;  /* Reduce image size for smaller screens */
+  }
+
+  .product h3 {
+    font-size: 1.2em;  /* Adjust font size for smaller screens */
+  }
+
+  .product p {
+    height: 50px;  /* Adjust description height for smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .product {
+    max-width: 200px;  /* Adjust card size for very small screens */
+    max-height: 400px;  /* Adjust card height for very small screens */
+  }
+
+  .product img {
+    max-height: 150px;  /* Reduce image size even more on mobile */
+  }
+
+  .product h3 {
+    font-size: 1.1em;  /* Adjust title font size for mobile */
+  }
+
+  .product p {
+    height: 40px;  /* Adjust description height for mobile */
+  }
 }
 
   </style>

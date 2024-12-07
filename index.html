@@ -98,10 +98,27 @@
           <button id="cartBtn" class="header-action-btn" aria-label="cart item">
             <data class="btn-text" value="0">€0.00</data>
             <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-            <span class="btn-badge">0</span>
-          </button>
+            <span class="btn-badge" id="cart-badge">0</span> <!-- Cart Badge -->
+        </button>
+        
         </div>
-  
+        
+
+                <!-- Cart Modal -->
+        <div id="cart-modal" class="cart-modal">
+          <div class="cart-modal-content">
+              <span id="close-modal" class="close-btn">&times;</span>
+              <h2>Your Cart</h2>
+              <ul id="cart-items-list">
+                  <!-- Cart items will be displayed here -->
+              </ul>
+              <div class="cart-total">
+                  <span>Total: </span><span id="cart-total">€0.00</span>
+              </div>
+              <button id="checkout-btn">Proceed to Checkout</button>
+          </div>
+        </div>
+
         <!-- Navbar (Links including Categories) -->
         <nav class="navbar">
           <ul class="navbar-list">

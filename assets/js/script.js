@@ -90,7 +90,7 @@ scrollReveal();
 addEventOnElem(window, "scroll", scrollReveal);
 
 /**
- * Login and cart button redirects
+ * Login redirects
  */
 const loginBtn = document.getElementById("loginBtn");
 const cartBtn = document.getElementById("cartBtn");
@@ -99,9 +99,6 @@ loginBtn?.addEventListener("click", function () {
   window.location.href = "login.html"; // Ensure "login.html" exists
 });
 
-cartBtn?.addEventListener("click", function () {
-  window.location.href = "login.html"; // Replace with the actual login page URL
-});
 
 // script.js
 
@@ -180,3 +177,75 @@ document.getElementById('sale-popup').addEventListener('click', function(event) 
 
 
 
+// Global cart array to store the items
+let cart = [];
+let cartCount = 0; // Track the number of items in the cart
+
+// Function to update the cart badge (cart button's badge)
+function updateCartBadge() {
+    document.getElementById('cart-badge').textContent = cartCount; // Update the cart badge with the count
+}
+
+// Function to update the cart modal with current cart items and total
+function updateCartModal() {
+    const cartItemsList = document.getElementById('cart-items-list');
+    const cartTotal = document.getElementById('cart-total');
+
+    // Clear any existing cart items in the modal
+    cartItemsList.innerHTML = '';
+
+    let total = 0;
+
+    // Loop through cart items and add them to the modal
+    cart.forEach(item => {
+        const li = document.createElement('li');
+        li.classList.add('cart-item');
+        li.innerHTML = `
+            <img src="${item.image}" alt="${item.title}" width="50"> 
+            <span>${item.title} - €${item.price.toFixed(2)}</span>
+        `;
+        cartItemsList.appendChild(li);
+        total += item.price;
+    });
+
+    // Update the total price in the modal
+    cartTotal.textContent = `€${total.toFixed(2)}`;
+}
+
+// Function to handle adding an item to the cart
+function addToCart(product) {
+    cart.push(product); // Add product to the cart array
+    cartCount++; // Increment the cart count
+    updateCartBadge(); // Update the cart badge number
+}
+
+// Function to handle opening the cart modal
+function openCartModal() {
+    document.getElementById('cart-modal').style.display = 'block'; // Show the cart modal
+    updateCartModal(); // Update the modal with current cart items
+}
+
+// Function to handle closing the cart modal
+function closeCartModal() {
+    document.getElementById('cart-modal').style.display = 'none'; // Hide the cart modal
+}
+
+// Add event listener for the cart button to open the modal
+document.getElementById('cartBtn').addEventListener('click', openCartModal);
+
+// Add event listener for closing the modal
+document.getElementById('close-modal').addEventListener('click', closeCartModal);
+
+// Example of dynamically adding products to the cart when the "Add to Cart" button is clicked
+document.querySelectorAll('.action-btn[aria-label="add to cart"]').forEach((button, index) => {
+    button.addEventListener('click', () => {
+        // Example product data (you can make this dynamic based on each product)
+        const product = {
+            title: `Product ${index + 1}`, // Product title (dynamic for each product)
+            price: (index + 1) * 10, // Product price (example, change to dynamic data)
+            image: `./assets/images/product-0${index + 1}.jpg` // Product image (example)
+        };
+
+        addToCart(product); // Add the product to the cart
+    });
+});
