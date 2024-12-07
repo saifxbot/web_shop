@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Categories</title>
+  <style>
+    /* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+/* Category Section */
+h1 {
+  font-size: 2.5em;
+  color: #333;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Categories Container */
+#categories-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+#categories-container p {
+  font-size: 1.2em;
+  padding: 10px 20px;
+  background: #fff;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#categories-container p:hover {
+  background-color: #007bff;
+  color: #fff;
+  transform: translateY(-5px);
+}
+
+/* Products Section */
+h2 {
+  font-size: 2em;
+  color: #333;
+  margin: 40px 0 20px;
+  text-align: center;
+}
+
+#products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 30px;
+  justify-items: center;
+}
+
+/* Product Cards */
+.product {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+}
+
+.product:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.2);
+  background-color: #f7f7f7;
+}
+
+.product img {
+  max-width: 100%;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  transition: transform 0.3s;
+}
+
+.product img:hover {
+  transform: scale(1.05);
+}
+
+.product h3 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.product p {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.product .price {
+  font-size: 1.2em;
+  color: #007bff;
+  font-weight: bold;
+}
+
+  </style>
+</head>
+<body>
+  <h1>Categories</h1>
+  <div id="categories-container"></div>
+  <h2>Products</h2>
+  <div id="products-container"></div>
+
+  <script>
+    const categoriesContainer = document.getElementById('categories-container');
+    const productsContainer = document.getElementById('products-container');
+
+   
+    const categories = JSON.parse(localStorage.getItem('categories'));
+
+    
+    function fetchProducts(category) {
+      fetch(`https://fakestoreapi.com/products/category/${category}`)
+        .then((res) => res.json())
+        .then((products) => {
+          productsContainer.innerHTML = ''; // Clear previous products
+          products.forEach((product) => {
+            const productItem = document.createElement('div');
+            productItem.classList.add('product');
+            productItem.innerHTML = `
+              <h3>${product.title}</h3>
+              <img src="${product.image}" alt="${product.title}" style="max-width: 100px;" />
+              <p>Price: $${product.price}</p>
+              <p>${product.description}</p>
+            `;
+            productsContainer.appendChild(productItem);
+          });
+        })
+        .catch((err) => console.error('Error fetching products:', err));
+    }
+
+    // Display categories and add click event listeners
+    if (categories && categories.length > 0) {
+      categories.forEach((category) => {
+        const categoryItem = document.createElement('p');
+        categoryItem.textContent = category;
+        categoryItem.addEventListener('click', () => {
+          fetchProducts(category);
+        });
+        categoriesContainer.appendChild(categoryItem);
+      });
+    } else {
+      categoriesContainer.textContent = 'No categories found.';
+    }
+  </script>
+</body>
+</html>

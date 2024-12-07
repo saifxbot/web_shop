@@ -106,3 +106,38 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
+const categoriesButton = document.getElementById('categories-button');
+const categoriesContainer = document.getElementById('categories-container');
+
+// Fetch categories from the API
+function fetchCategories() {
+  fetch('https://fakestoreapi.com/products/categories')
+    .then(res => res.json())
+    .then(json => {
+      categoriesContainer.innerHTML = ''; // Clear previous content
+      json.forEach(category => {
+        const categoryItem = document.createElement('p');
+        categoryItem.textContent = category;
+        categoryItem.style.margin = '0';
+        categoryItem.style.cursor = 'pointer';
+        categoriesContainer.appendChild(categoryItem);
+      });
+    })
+    .catch(err => console.error('Error fetching categories:', err));
+}
+
+// Show categories on button click
+categoriesButton.addEventListener('click', (event) => {
+  event.preventDefault(); // Prevent immediate navigation to categories.html
+  fetchCategories();
+  categoriesContainer.style.display = 'block';
+
+  // Redirect to categories.html after 1 second (adjust as needed)
+  setTimeout(() => {
+    window.location.href = './assets/html/categories.html';
+  }, 1000); // Delay for user to see the categories
+});
+
+
+  
