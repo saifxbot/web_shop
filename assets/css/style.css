@@ -82,8 +82,6 @@
 
 
 
-
-
 /*-----------------------------------*\
   #RESET
 \*-----------------------------------*/
@@ -107,7 +105,8 @@ ion-icon { display: block; }
 
 a {
   text-decoration: none;
-  color: inherit;
+  color: white;
+  
 }
 
 img { height: auto; }
@@ -136,10 +135,15 @@ html {
 
 body {
   background-color: var(--white);
-  color: var(--gray-web);
-  font-size: 1.6rem;
+  color: var(--black_10);
+  font-size: 2.6rem;
   font-weight: var(--fw-500);
   line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  top: 10%;
+  right: 50%;
+  
 }
 
 :focus-visible { outline-offset: 4px; }
@@ -210,14 +214,21 @@ body {
 .btn-secondary:is(:hover, :focus) {
   background-color: var(--black);
   color: var(--white);
+  font-size: smaller;
 }
 
-.btn-primary:is(:hover, :focus) { background-color: var(--light-gray); }
+.btn-primary:is(:hover, :focus) { background-color: hsl(34, 93%, 46%);
+  transition: background-color 300ms ease-in-out;
+}
 
 .btn-secondary {
-  background-color: var(--white);
-  color: var(--black);
+  background-color: black;
+  color: white;
   box-shadow: var(--shadow-2);
+  font-size: smaller;
+}
+.btn-secondary:is(:hover, :focus) { background-color: hsl(34, 93%, 46%);
+  transition: background-color 300ms ease-in-out;
 }
 
 .has-scrollbar {
@@ -347,6 +358,31 @@ body {
   #HEADER
 \*-----------------------------------*/
 
+
+
+#loginBtn {
+  position: fixed;
+  top: 10px; /* 10px from the top */
+  left: 15px; /* 10px from the left */
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1000;
+  transition: opacity 0.3s ease; /* Smooth transition for showing/hiding */
+}
+
+
+#loginBtn ion-icon {
+  font-size: 24px;
+  color: #ffffff;
+}
+
+body {
+  height: 2000px; /* Just to ensure we have scrollable content for testing */
+}
+
+
+
 .header .input-wrapper,
 .header-action-btn:not(:first-child),
 .navbar { display: none; }
@@ -356,23 +392,12 @@ body {
   padding-block-end: 80px;
 }
 
-.alert {
-  background-color: var(--pale-spring-bud);
-  color: var(--black);
-  font-size: var(--fs-7);
-  text-transform: uppercase;
-  font-weight: var(--fw-700);
-  letter-spacing: 2px;
-  text-align: center;
-  padding-block: 15px;
-}
-
 .header-top {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
-  background-color: var(--white);
+  width: 0%;
+  background-color: rgb(249, 249, 249);
   padding-block: 26px;
   z-index: 4;
 }
@@ -395,7 +420,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
+  gap: 10px;
 }
 
 .nav-open-btn {
@@ -417,6 +442,7 @@ body {
 .header-action-btn {
   font-size: 28px;
   transition: var(--transition-1);
+  color: white;
 }
 
 .header-action-btn:is(:hover, :focus) { color: var(--black_70); }
@@ -500,98 +526,187 @@ body {
 
 
 /*-----------------------------------*\
-  #HERO
+  #header
 \*-----------------------------------*/
 
-/* Base Hero Styles */
-.hero {
-  padding-block-start: 0;
-  display: flex; /* Align child elements flexibly */
-  flex-direction: column; /* Stack items vertically */
-  align-items: center;
-  justify-content: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+body{
+    font-family: Poppins;
+    margin: 0;
+    background-color: #fefefe;
+    color: #000000;
+}
+svg{
+    width: 25px;
 }
 
-/* Hero Card */
-/* Base Hero Styles */
-.hero {
-  padding-block-start: 0;
-  display: flex; /* Align child elements flexibly */
-  flex-direction: column; /* Stack items vertically */
-  align-items: center;
-  justify-content: center;
-  overflow: hidden; /* Prevent content overflow */
-  width: 100%; /* Ensure full-width container */
+.content{
+  color: rgb(255, 252, 252);      /*for paragraph h2 and paragraph*/
 }
 
-/* Hero Card */
-.hero-card {
-  background-color: var(--light-gray, #f0f0f0); /* Fallback color */
-  aspect-ratio: 3 / 1; /* Maintain consistent aspect ratio */
-  width: 100%; /* Full width of the container */
-  max-width: 2000px; /* Limit the maximum width */
-  margin: 0 auto; /* Center the card */
-  background-size: cover; /* Scale background to fill */
-  background-position: center; /* Center the image focal point */
-  display: flex; /* Enable alignment of content inside */
-  align-items: center; /* Center align content vertically */
-  justify-content: center; /* Center align content horizontally */
-  padding: 5%; /* Reduce padding for consistency */
-  border-radius: var(--radius-3, 10px); /* Fallback border radius */
-  transition: all 0.3s ease-in-out; /* Smooth transitions */
+header{
+    width: 100px;
+    max-width: 90%;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 50px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 100;
 }
-
-/* Hero Text */
-.hero-text {
-  font-size: var(--fs-6, 1.25rem); /* Fallback font size */
-  color: var(--black, #333); /* Fallback text color */
-  text-align: center; /* Center-align text */
-  margin: 1rem 0; /* Ensure consistent spacing */
+header .logo{
+    font-weight: bold;
+    color: #717070;
 }
-
-/* Price Styling */
-.hero .price {
-  color: var(--black, #333); /* Fallback text color */
-  font-size: var(--fs-5, 1.5rem); /* Fallback font size */
-  font-weight: var(--fw-600, 600); /* Fallback font weight */
-  margin: 0.5rem 0; /* Consistent spacing */
+header .menu{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    font-weight: 500;
 }
-
-/* Scrollbar Item */
-.hero .scrollbar-item {
-  min-width: 100%;
-  max-width: 100%; /* Prevent overflow */
-  height: auto; /* Maintain proportional height */
+/* css slider */
+.slider{
+    height: 100vh;
+    margin-top: -50px;
+    position: relative;
 }
-
-/* Responsive Adjustments for Tablets */
-@media (max-width: 768px) {
-  .hero-card {
-    aspect-ratio: 4 / 3; /* Adjust aspect ratio for tablets */
-    padding: 5%; /* Adjust padding for medium screens */
-  }
-
-  .hero-text {
-    font-size: var(--fs-7, 1rem); /* Reduce font size slightly */
-  }
+.slider .list .item{
+    position: absolute;
+    inset: 0 0 0 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: .5s;
 }
-
-/* Responsive Adjustments for Small Screens */
-@media (max-width: 480px) {
-  .hero-card {
-    aspect-ratio: 1 / 1; /* Square banner for small screens */
-    padding: 3%; /* Reduce padding for small screens */
-  }
-
-  .hero-text {
-    font-size: var(--fs-8, 0.875rem); /* Further reduce font size */
-  }
+.slider .list .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
-
-
-
-
-
+.slider .list .item::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-image: linear-gradient(
+        to top, #00000074 70%, transparent
+    );
+}
+.slider .list .item .content{
+    position: absolute;
+    left: 10%;
+    top: 20%;
+    width: 500px;
+    max-width: 80%;
+    z-index: 1;
+}
+.slider .list .item .content p:nth-child(1){
+    text-transform: uppercase;
+    letter-spacing: 10px;
+}
+.slider .list .item .content h2{
+    font-size: 100px;
+    margin: 0;
+}
+.slider .list .item.active{
+    opacity: 1;
+    z-index: 10;
+}
+@keyframes showContent {
+    to{
+        transform: translateY(0);
+        filter: blur(0);
+        opacity: 1;
+    }
+}
+.slider .list .item.active p:nth-child(1),
+.slider .list .item.active h2,
+.slider .list .item.active p:nth-child(3){
+    transform: translateY(30px);
+    filter: blur(20px);
+    opacity: 0;
+    animation: showContent .5s .7s ease-in-out 1 forwards;
+}
+.slider .list .item.active h2{
+    animation-delay: 1s;
+}
+.slider .list .item.active p:nth-child(3){
+    animation-duration: 1.3s;
+}
+.arrows{
+    position: absolute;
+    top: 30%;
+    right: 50px;
+    z-index: 100;
+}
+.arrows button{
+    background-color: #eee5;
+    border: none;
+    font-family: monospace;
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: x-large;
+    color: #eee;
+    transition: .5s;
+}
+.arrows button:hover{
+    background-color: #eee;
+    color: black;
+}
+.thumbnail{
+    position: absolute;
+    bottom: 50px;
+    z-index: 11;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    height: 250px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    overflow: auto;
+    justify-content: center;
+}
+.thumbnail::-webkit-scrollbar{
+    width: 0;
+}
+.thumbnail .item{
+    width: 150px;
+    height: 220px;
+    filter: brightness(.5);
+    transition: .5s;
+    flex-shrink: 0;
+}
+.thumbnail .item img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.thumbnail .item.active{
+    filter: brightness(1.5);
+}
+.thumbnail .item .content{
+    position: absolute;
+    inset: auto 10px 10px 10px;
+}
+@media screen and (max-width: 678px) {
+    .thumbnail{
+        justify-content: start;
+    }
+    .slider .list .item .content h2{
+        font-size: 60px;
+    }
+    .arrows{
+        top: 10%;
+    }
+}
 
 
 
@@ -905,7 +1020,7 @@ body {
 /* Badge for additional emphasis */
 .offer .badge {
   font-weight: var(--fw-600);
-  background: #ff6f61;
+  background: #101010;
   padding: 5px 10px;
   color: white;
   border-radius: 5px;
@@ -921,9 +1036,9 @@ body {
 /* Section titles for offers */
 .offer .section-title {
   margin-block: 20px 8px;
-  font-size: var(--fs-4);
-  font-weight: var(--fw-700);
-  color: var(--hoockers-green);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-600);
+  color: black;
   text-transform: capitalize;
   letter-spacing: 1px;
   transition: transform 0.9s ease;
@@ -937,14 +1052,14 @@ body {
 /* Section text style */
 .offer .section-text {
   font-size: var(--fs-6);
-  color: var(--gray-web);
+  color: rgb(94, 92, 92);
   line-height: 1.6;
   transition: color 0.3s ease;
 }
 
 /* Countdown section */
 .offer .countdown {
-  color: var(--hoockers-green);
+  color:black;
   font-size: var(--fs-2);
   line-height: 1;
   display: flex;
@@ -975,12 +1090,12 @@ body {
   align-items: center;
   font-weight: var(--fw-500);
   font-size: 4rem;
-  color: var(--hoockers-green);
+  color: black;
 }
 
 /* Styling for time separators (:) */
 .offer .time:not(:last-child)::after {
-  content: "";
+  content:"";
   color: var(--gray-web);
   font-size: 3rem;
   font-weight: var(--fw-500);
@@ -990,7 +1105,7 @@ body {
 
 /* Hover effect for time separators */
 .offer .time:not(:last-child):hover::after {
-  color: var(--hoockers-green);
+  color: black;
 }
 
 
@@ -1001,28 +1116,84 @@ body {
   #BLOG
 \*-----------------------------------*/
 
-.blog { padding-block-end: calc(var(--section-padding) * 2); }
+.blog { 
+  padding-block-end: calc(var(--section-padding) * 2); 
+}
 
 .blog .section-title {
   text-align: center;
   margin-block-end: 40px;
 }
 
-.blog-card .card-banner img { transition: var(--transition-2); }
-
-.blog-card:is(:hover, :focus-within) .card-banner img { transform: scale(1.2); }
-
-.blog-card .card-title {
+.blog-card {
+  position: relative;
+  overflow: hidden;
   text-align: center;
-  margin-block: 30px 20px;
-  transition: var(--transition-1);
 }
 
-.blog-card .card-title:is(:hover, :focus) { color: var(--hoockers-green); }
+.blog-card .card-banner {
+  position: relative;
+}
 
-.blog-card .btn-link { justify-content: center; }
+.blog-card .card-banner img { 
+  transition: transform 0.4s ease; 
+}
 
+.blog-card:is(:hover, :focus-within) .card-banner img { 
+  transform: scale(1.2); 
+}
 
+/* Gradient overlay */
+.blog-card .gradient-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%; /* Cover half of the image */
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)); /* Gradient fades upwards */
+  opacity: 0; /* Hidden by default */
+  visibility: hidden; /* Prevents interaction when hidden */
+  transform: translateY(20px); /* Slight offset for animation */
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s ease;
+  z-index: 1; /* Places it above the image */
+}
+
+/* Show gradient and paragraph on hover */
+.blog-card:is(:hover, :focus-within) .gradient-overlay {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* Moves to its natural position */
+}
+
+/* Paragraph inside the gradient */
+.blog-card .gradient-overlay .blog-description {
+  color: var(--white);
+  font-size: 2rem;
+  line-height: 1.5;
+  margin: 0;
+  padding: 10px 20px;
+  text-align: center;
+  position: relative;
+  bottom: -20px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+.blog-card .btn-link {
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.75rem;
+  color: var(--white);
+  background-color: rgba(66, 64, 64, 0.226);
+  padding: 1rem 2rem; /* Add padding for the button */
+  border-radius: 0.45em;
+  text-decoration: none;
+  transition: background-color 300ms ease-in-out;
+}
+
+.blog-card .btn-link:hover {
+  background-color: hsl(34, 93%, 46%); /* Change background on hover */
+}
 
 
 
@@ -1071,6 +1242,7 @@ body {
 .footer-link {
   font-size: var(--fs-7);
   padding-block: 5px;
+  color: black;
 }
 
 .footer-link:is(:hover, :focus) { text-decoration: underline; }
@@ -1461,21 +1633,10 @@ body {
    * HEADER
    */
 
-  .header .input-wrapper,
-  .header-action-btn:not(:first-child),
-  .navbar { display: block; }
-
-  .nav-open-btn { display: none; }
-
-  .header {
-    padding-block-end: 60px;
-    margin-block-end: 10px;
-  }
-
-  .header-top {
-    position: unset;
-    padding-block: 24px 0;
-  }
+  
+  
+  
+  
 
   .header-top:is(.active, .header-hide) { all: unset; }
 
@@ -1521,7 +1682,7 @@ body {
   .header-action-btn .btn-badge {
     position: absolute;
     top: 0;
-    right: -10px;
+    right: 10px;
     background-color: var(--black);
     color: var(--white);
     font-size: var(--fs-9);
@@ -1543,23 +1704,11 @@ body {
     margin-block-start: 3px;
   }
 
-  .navbar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--white);
-    padding-block: 18px;
-    z-index: 4;
-  }
+ 
 
-  .navbar .navbar-list {
-    display: flex;
-    justify-content: center;
-    gap: 45px;
-  }
+  
 
-  .navbar .navbar-link {
+  .a .navbar-link {
     color: var(--black);
     font-size: var(--fs-7);
     font-weight: var(--fw-600);
@@ -1673,12 +1822,12 @@ body {
 /* Close button */
 .close-btn {
   position: absolute;
-  top: 0px;
-  right: 0px;
+  top: 40px;
+  right: 10px;
   background: none;
   border: none;
   font-size: 24px;
-  color: #ffffff;
+  color: #080808;
   cursor: pointer;
 }
 
@@ -1711,7 +1860,7 @@ body {
 }
 
 .cart-modal-content {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   margin: 5% auto;
   padding: 20px;
   border: 1px solid #888;
@@ -1721,15 +1870,17 @@ body {
 }
 
 .close-btn {
-  color: #aaa;
+  color: #5f5c5c;
   font-size: 28px;
   font-weight: bold;
   position: absolute;
   right: 25px;
-  top: 0;
+  top: 10px; /* Added 'px' to the top property */
   padding: 10px;
   cursor: pointer;
+  z-index: 1000; /* Ensure it appears above other elements */
 }
+
 
 .close-btn:hover,
 .close-btn:focus {
@@ -1778,18 +1929,19 @@ body {
 
 /* Checkout Button */
 #checkout-btn {
-  margin-top: 20px;
+  margin-top: 10px;
   padding: 10px 20px;
-  background-color: #4CAF50;
+  background-color: #000000;
   color: white;
   border: none;
   cursor: pointer;
-  border-radius: 5px;
+  border-radius: 10px;
   transition: background-color 0.3s ease;
+  font-size: smaller;
 }
 
 #checkout-btn:hover {
-  background-color: #45a049;
+  background-color: #e6992f;
 }
 
 /* Cart Button Badge Style */
@@ -1810,19 +1962,191 @@ body {
   align-items: center; /* Centers content vertically */
 }
 
-}
+
 
 #cartBtn {
-  position: relative;
+  position: fixed; /* Position fixed relative to the viewport */
+  top: 10px; /* 10px from the top */
+  right: 10px; /* 10px from the right */
   display: inline-flex;
   align-items: center;
-  background-color: #fff;
-  border: 2px solid #ddd;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
+  z-index: 1000; /* Ensure it's above other content */
 }
 
+
 #cartBtn:hover {
-  background-color: #f8f8f8;
+  background-color: #df8927;
 }
+
+
+/* for dropdown from category button */
+
+/* Dropdown container */
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%; /* Show below the parent item */
+  left: 10px;
+  background-color: #9b99995d;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 0px 0;
+  border-radius: 8px;
+  z-index: 1000;
+}
+
+/* Dropdown buttons */
+.dropdown-item {
+  display: block;
+  padding: 5px 20px;
+  width: 100%;
+  border: none;
+  background: none;
+  text-align: left;
+  color: #fffffffd;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-size: smaller;
+}
+
+.dropdown-item:hover {
+  background-color: #e0821d;
+  color: #fff;
+}
+
+/* Show the dropdown on hover */
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+
+
+/*fetced product card*/
+
+
+
+/* General layout for the products container */
+#products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjust column size */
+  gap: 20px; /* Space between cards */
+  padding: 20px;
+  justify-items: center; /* Center the items */
+  margin-top: 20px;
+}
+
+/* Product card style */
+.product-card {
+  position: relative;
+  width: 100%; /* Full width of the grid cell */
+  max-width: 300px; /* Limit the width of the card */
+  height: 400px; /* Fixed height */
+  border-radius: 16px;
+  background-color: #fff;
+  box-shadow: rgba(0, 0, 0, 0.062) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+  overflow: hidden;
+  transform-origin: center;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Hover effect on product card */
+.product-card:hover {
+  transform: scale(1.05); /* Scale the card slightly */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px; /* Shadow on hover */
+}
+
+/* Product image style */
+.product-image {
+  position:relative;
+  width: 100%;
+  height: 60%; /* 60% of the card height */
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit:scale-down; /* Ensures the image covers the area of the container */
+  transition: transform 0.4s ease-in-out;
+}
+
+.product-image:hover img {
+  transform: scale(1.5); /* Zoom in effect on hover */
+}
+
+/* Gradient overlay effect on hover */
+.product-image:hover::after {
+  content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+
+border-radius: 16px;
+transition: background 0.3s ease-in-out;
+
+}
+
+/* Product info section */
+.product-info {
+  padding: 5px;
+  text-align: center;
+}
+
+.product-info h3 {
+  font-size: 16px;
+  margin: 10px 0;
+  color: black;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  transition: color 0.3s ease-out;
+}
+
+.product-info p {
+  font-size: 10px;
+  color: #555;
+  margin: 5px 0;
+}
+
+.product-price {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 10px;
+}
+
+/* Change color on hover for the title and price */
+.product-card:hover .product-info h3 {
+  color: #db9824; /* Title color change on hover */
+}
+
+.product-card:hover .product-price {
+  color: #db9824; /* Price color change on hover */
+}
+
+/* Add a smooth transition to the price and title color */
+.product-info h3,
+.product-info p,
+.product-price {
+  transition: color 0.3s ease-out;
+}
+#products-section h2 {
+  font-family:'Courier New', Courier, monospace;
+  font-size: 2.5rem; /* Adjust the font size */
+  color:decrement; /* Set a color for the title */
+  text-align: center; /* Center the heading */
+  margin-bottom: 30px; /* Add space below the heading */
+  letter-spacing: 0.1em; /* Slight letter spacing for style */
+  text-transform: uppercase; /* Make the title uppercase */
+  border-bottom: 3px solid #000000; /* Add a bottom border for emphasis */
+  padding-bottom: 10px; /* Space between text and border */
+  width: 100%; /* Ensure the title spans the width */
+  box-sizing: border-box; /* Include padding in width calculation */
+}
+

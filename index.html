@@ -26,20 +26,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- 
-    - preload images
-  -->
-  <link rel="preload" as="image" href="./assets/images/logo.png">
-  <link rel="preload" as="image" href="./assets/images/hero-banner-1.jpg">
-  <link rel="preload" as="image" href="./assets/images/hero-banner-2.jpg">
-  <link rel="preload" as="image" href="./assets/images/hero-banner-3.jpg">
-
 </head>
 
 <body id="top">
 
   <!-- 
-    --- #HEADER
+    --- #pop
   -->
   <div id="sale-popup" class="popup hidden">
     <div class="popup-content">
@@ -52,112 +44,74 @@
     </div>
   </div>
   
-  
-
-  <header class="header">
-
-    <!-- Free Shipping Alert -->
-    <div class="alert">
-      <div class="container">
-        <p class="alert-text">Free shipping! Grab Your desire</p>
-      </div>
-    </div>
-  
-    <div class="header-top" data-header>
-      <div class="container">
-  
-        <!-- Navbar Toggle Button -->
-        <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
-          <span class="line line-1"></span>
-          <span class="line line-2"></span>
-          <span class="line line-3"></span>
-        </button>
-  
-        <!-- Search Field -->
-        <div class="input-wrapper">
-          <input type="search" name="search" placeholder="Search product" class="search-field">
-          <button class="search-submit" aria-label="search">
-            <ion-icon name="search-outline" aria-hidden="true"></ion-icon>
-          </button>
-        </div>
-  
-        <!-- Logo -->
-        <a href="#" class="logo">
-          <img src="./assets/images/logo.png" width="179" height="26" alt="SilekenPearl">
-        </a>
-  
-        <!-- Header Actions (Login, Favorites, Cart) -->
-        <div class="header-actions">
-          <button id="loginBtn" class="header-action-btn" aria-label="user">
+  <header>
+    <ul class="menu">
+        <li><a href="#home" class="navbar-link has-after">Home</a></li>
+        <li><a href="#collection" class="navbar-link has-after">Collection</a></li>
+        <li><a href="#shop" class="navbar-link has-after">Shop</a></li>
+        <li><a href="#offer" class="navbar-link has-after">Offer</a></li>
+        <li class="dropdown">
+            <a href="#" class="navbar-link has-after" id="categories-link">Categories</a>
+            <div class="dropdown-menu">
+                <button class="dropdown-item" data-category="men's clothing">Men's Clothing</button>
+                <button class="dropdown-item" data-category="women's clothing">Women's Clothing</button>
+                <button class="dropdown-item" data-category="electronics">Electronics</button>
+                <button class="dropdown-item" data-category="jewelery">Accessories</button>
+            </div>
+        </li>
+    </ul>
+    
+    <!-- Header Actions -->
+    <div class="header-actions">
+        <button id="loginBtn" class="header-action-btn" aria-label="user">
             <ion-icon name="person-outline" aria-hidden="true"></ion-icon>
-          </button>
-          <button class="header-action-btn" aria-label="favourite item">
-            <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-            <span class="btn-badge">0</span>
-          </button>
-          <button id="cartBtn" class="header-action-btn" aria-label="cart item">
+        </button>
+        <button id="cartBtn" class="header-action-btn" aria-label="cart item">
             <data class="btn-text" value="0"></data>
             <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
             <span class="btn-badge" id="cart-badge">0</span> <!-- Cart Badge -->
         </button>
-        
-        </div>
+    </div>
+  </header>
+
+
+  
+  
+  
+    <div class="header-top" data-header>
+      <div class="container">
+  
         
 
-                <!-- Cart Modal -->
+        
+        <!-- Header Actions (Login, Cart) -->
+        
+        
+        <!-- Cart Modal -->
         <div id="cart-modal" class="cart-modal">
           <div class="cart-modal-content">
-              <span id="close-modal" class="close-btn">&times;</span>
-              <h2>Your Cart</h2>
-              <ul id="cart-items-list">
-                  <!-- Cart items will be displayed here -->
-              </ul>
-              <div class="cart-total">
-                  <span>Total: </span><span id="cart-total">€0.00</span>
-              </div>
-              <button id="checkout-btn">Proceed to Checkout</button>
+            <span id="close-modal" class="close-btn">&times;</span>
+            <h2>Your Cart</h2>
+            <ul id="cart-items-list">
+              <!-- Cart items will be displayed here -->
+            </ul>
+            <div class="cart-total">
+              <span>Total: </span><span id="cart-total">€0.00</span>
+            </div>
+            <button id="checkout-btn" onclick="window.location.href='/assets/html/payment.html';">Order Now</button>
           </div>
         </div>
-
+        
         <!-- Navbar (Links including Categories) -->
-        <nav class="navbar">
-          <ul class="navbar-list">
-            <li><a href="#home" class="navbar-link has-after">Home</a></li>
-            <li><a href="#collection" class="navbar-link has-after">Collection</a></li>
-            <li><a href="#shop" class="navbar-link has-after">Shop</a></li>
-            <li><a href="#offer" class="navbar-link has-after">Offer</a></li>
-            <li><a href="#membership" class="navbar-link has-after">Membership</a></li>
-            <a href="./assets/html/categories.html" class="navbar-link has-after" id="categories-link">
-              <button id="categories-button">Categories</button>
-            </a>
-            
-            <script>
-              const categoriesButton = document.getElementById('categories-button');
-            
-              categoriesButton.addEventListener('click', (event) => {
-                event.preventDefault(); // Prevent immediate navigation
-            
-                // Fetch categories and store them in local storage
-                fetch('https://fakestoreapi.com/products/categories')
-                  .then((res) => res.json())
-                  .then((categories) => {
-                    localStorage.setItem('categories', JSON.stringify(categories));
-                    // Redirect to categories.html
-                    window.location.href = './assets/html/categories.html';
-                  })
-                  .catch((err) => console.error('Error fetching categories:', err));
-              });
-            </script>
-            
-            
+        
           
-          </ul>
-        </nav>
+        
+        
   
       </div>
     </div>
   
-  </header><
+  
 
 
 
@@ -166,7 +120,7 @@
   <!-- 
     - #MOBILE NAVBAR
   -->
-
+  
   <div class="sidebar">
     <div class="mobile-navbar" data-navbar>
 
@@ -199,7 +153,7 @@
         </li>
 
         <li>
-          <a href="#blog" class="navbar-link" data-nav-link>Blog</a>
+          <a href="#categories" class="navbar-link" data-nav-link>Categories</a>
         </li>
 
       </ul>
@@ -213,88 +167,115 @@
 
 
 
-  <main>
-    <article>
+  
 
       <!-- 
         - #HERO
       -->
-
-      <section class="section hero" id="home" aria-label="hero" data-section>
-        <div class="container">
-
-          <ul class="has-scrollbar">
-
-            <li class="scrollbar-item">
-              <div class="hero-card has-bg-image" style="background-image: url('./assets/images/hero-banner-1.png')">
-
-                <div class="card-content">
-
-                  <h1 class="h1 hero-title">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                  </h1>
-
-                  <p class="hero-text">
-                    <br>
-                  </p>
-
-                  
-
-                  <a href="#" class="btn btn-primary">Shop Now</a>
-
-                </div>
-
+    
+      <section aria-label="hero" data-section>
+        
+        
+        <div class="slider">
+          <!-- list Items -->
+          <div class="list">
+              <div class="item active">
+                
+                  <img src="assets/images/hero-banner-1.png">
+                  <div class="content">
+                      <p><br></p>
+                      <h2>MONDAY</h2>
+                      <p>
+                        Unlock unbeatable deals this Cyber Monday! Enjoy exclusive discounts on our top-rated products your chance to shop smarter, save bigger, and upgrade your collection.
+                      </p>
+                  </div>
               </div>
-            </li>
-
-            <li class="scrollbar-item">
-              <div class="hero-card has-bg-image" style="background-image: url('./assets/images/hero-banner-2.png')">
-
-                <div class="card-content">
-
-                  <h1 class="h1 hero-title">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                  </h1>
-                  
-                  <a href="#" class="btn btn-primary">Shop Now</a>
-                  
-                </div>
-
+              <div class="item">
+                  <img src="assets/images/hero-banner-2.png">
+                  <div class="content">
+                      <p ></p>
+                      <h2>Slider 02</h2>
+                      <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ex.
+                      </p>
+                  </div>
               </div>
-            </li>
-
-            <li class="scrollbar-item">
-              <div class="hero-card has-bg-image" style="background-image: url('./assets/images/hero-banner-3.png')">
-
-                <div class="card-content">
-
-                  <h1 class="h1 hero-title">
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-                  </h1>
-
-                  <a href="#" class="btn btn-primary">Shop Now</a>
-
-                </div>
-
+              <div class="item">
+                  <img src="assets/images/hero-banner-3.png">
+                  <div class="content">
+                      <p>design</p>
+                      <h2>Slider 03</h2>
+                      <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ex.
+                      </p>
+                  </div>
               </div>
-            </li>
-
-          </ul>
-
-        </div>
+              <div class="item">
+                  <img src="/assets/images/banner-1.jpeg">
+                  <div class="content">
+                      <p>design</p>
+                      <h2>Slider 04</h2>
+                      <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ex.
+                      </p>
+                  </div>
+              </div>
+              <div class="item">
+                  <img src="image/img5.jpg">
+                  <div class="content">
+                      <p>design</p>
+                      <h2>Slider 05</h2>
+                      <p>
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore, neque?
+                          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, ex.
+                      </p>
+                  </div>
+              </div>
+          </div>
+          <!-- button arrows -->
+          <div class="arrows">
+              <button id="prev"><</button>
+              <button id="next">></button>
+          </div>
+          <!-- thumbnail -->
+          <div class="thumbnail">
+              <div class="item active">
+                  <img src="assets/images/hero-banner-1.png">
+                  <div class="content">
+                      Name Slider
+                  </div>
+              </div>
+              <div class="item">
+                  <img src="assets/images/hero-banner-2.png">
+                  <div class="content">
+                      Name Slider
+                  </div>
+              </div>
+              <div class="item">
+                  <img src="assets/images/hero-banner-3.png">
+                  <div class="content">
+                      Name Slider
+                  </div>
+              </div>
+              <div class="item">
+                  <img src="/assets/images/bg-mega-menu.jpg">
+                  <div class="content">
+                      Name Slider
+                  </div>
+              </div>
+              <div class="item">
+                  <img src="">
+                  <div class="content">
+                      Name Slider
+                  </div>
+              </div>
+          </div>
+      </div>
       </section>
-
+    
 
 
 
@@ -302,6 +283,9 @@
       <!-- 
         - #COLLECTION
       -->
+      <main>
+        <article>
+
 
       <section class="section collection" id="collection" aria-label="collection" data-section>
         <div class="container">
@@ -432,12 +416,6 @@
                     <button class="action-btn" aria-label="add to cart">
                       <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
                     </button>
-                    <button class="action-btn" aria-label="add to wishlist">
-                      <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-                    </button>
-                    <button class="action-btn" aria-label="compare">
-                      <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-                    </button>
                   </div>
                 </div>
             
@@ -494,15 +472,6 @@
               <button class="action-btn" aria-label="add to cart">
                 <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
               </button>
-      
-              <button class="action-btn" aria-label="add to wishlist">
-                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-              </button>
-      
-              <button class="action-btn" aria-label="compare">
-                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-              </button>
-      
             </div>
           </div>
       
@@ -545,12 +514,6 @@
             <div class="card-actions">
               <button class="action-btn" aria-label="add to cart">
                 <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-              </button>
-              <button class="action-btn" aria-label="add to wishlist">
-                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-              </button>
-              <button class="action-btn" aria-label="compare">
-                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
               </button>
             </div>
           </div>
@@ -605,15 +568,6 @@
               <button class="action-btn" aria-label="add to cart">
                 <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
               </button>
-      
-              <button class="action-btn" aria-label="add to wishlist">
-                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-              </button>
-      
-              <button class="action-btn" aria-label="compare">
-                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-              </button>
-      
             </div>
           </div>
       
@@ -659,15 +613,6 @@
               <button class="action-btn" aria-label="add to cart">
                 <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
               </button>
-      
-              <button class="action-btn" aria-label="add to wishlist">
-                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-              </button>
-      
-              <button class="action-btn" aria-label="compare">
-                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-              </button>
-      
             </div>
           </div>
       
@@ -719,14 +664,6 @@
             <div class="card-actions">
               <button class="action-btn" aria-label="add to cart">
                 <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-              </button>
-      
-              <button class="action-btn" aria-label="add to wishlist">
-                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-              </button>
-      
-              <button class="action-btn" aria-label="compare">
-                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
               </button>
             </div>
           </div>
@@ -793,12 +730,6 @@
                     <button class="action-btn" aria-label="add to cart">
                       <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
                     </button>
-                    <button class="action-btn" aria-label="add to whishlist">
-                      <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-                    </button>
-                    <button class="action-btn" aria-label="compare">
-                      <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-                    </button>
                   </div>
                 </div>
             
@@ -851,12 +782,6 @@
               <button class="action-btn" aria-label="add to cart">
                 <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
               </button>
-              <button class="action-btn" aria-label="add to whishlist">
-                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-              </button>
-              <button class="action-btn" aria-label="compare">
-                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-              </button>
             </div>
           </div>
       
@@ -901,12 +826,6 @@
             <div class="card-actions">
               <button class="action-btn" aria-label="add to cart">
                 <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-              </button>
-              <button class="action-btn" aria-label="add to whishlist">
-                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-              </button>
-              <button class="action-btn" aria-label="compare">
-                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
               </button>
             </div>
           </div>
@@ -955,12 +874,6 @@
               <button class="action-btn" aria-label="add to cart">
                 <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
               </button>
-              <button class="action-btn" aria-label="add to whishlist">
-                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-              </button>
-              <button class="action-btn" aria-label="compare">
-                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-              </button>
             </div>
           </div>
       
@@ -1008,12 +921,6 @@
               <button class="action-btn" aria-label="add to cart">
                 <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
               </button>
-              <button class="action-btn" aria-label="add to whishlist">
-                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-              </button>
-              <button class="action-btn" aria-label="compare">
-                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
-              </button>
             </div>
           </div>
 
@@ -1060,12 +967,6 @@
             <div class="card-actions">
               <button class="action-btn" aria-label="add to cart">
                 <ion-icon name="bag-handle-outline" aria-hidden="true"></ion-icon>
-              </button>
-              <button class="action-btn" aria-label="add to whishlist">
-                <ion-icon name="star-outline" aria-hidden="true"></ion-icon>
-              </button>
-              <button class="action-btn" aria-label="compare">
-                <ion-icon name="repeat-outline" aria-hidden="true"></ion-icon>
               </button>
             </div>
           </div>
@@ -1129,8 +1030,7 @@
 
                 <h2 class="h2 card-title">Discover Our Winter Skincare</h2>
 
-                <a href="#" class="btn btn-secondary">Explore More</a>
-
+                
                 <div class="has-bg-image" style="background-image: url('./assets/images/banner-1.jpeg')"></div>
 
               </div>
@@ -1161,7 +1061,75 @@
 
 
 
+      
+
+
+
+
       <!-- 
+        - #OFFER
+      -->
+
+      <section class="section offer" id="offer" aria-label="offer" data-section>
+        <div class="container">
+          <figure class="offer-banner">
+            <img id="offer-image-1" width="305" height="408" loading="lazy" alt="offer products" class="w-100">
+            <img id="offer-image-2" width="450" height="625" loading="lazy" alt="offer products" class="w-100">
+          </figure>
+          <div class="offer-content">
+            <p class="offer-subtitle">
+              <span class="span">Special Offer</span>
+              <span class="badge" aria-label="20% off" id="offer-discount">-20%</span>
+            </p>
+            <h2 class="h2-large section-title" id="offer-title">Mountain Pine Bath Oil</h2>
+            <p class="section-text" id="offer-description">
+              Made using clean, non-toxic ingredients, our products are designed for everyone.
+            </p>
+            <div class="countdown">
+              <span class="time" id="days" aria-label="days">15</span> :
+              <span class="time" id="hours" aria-label="hours">21</span> :
+              <span class="time" id="minutes" aria-label="minutes">46</span> :
+              <span class="time" id="seconds" aria-label="seconds">08</span>
+            </div>
+            <a href="#" class="btn btn-primary" id="offer-price">Get Only €39.00</a>
+          </div>
+        </div>
+      </section>
+      
+      <script>
+        // Fetch product 7 data
+        fetch('https://fakestoreapi.com/products/7')
+          .then(res => res.json())
+          .then(product => {
+            // Update content with product 7 data
+            document.getElementById('offer-title').textContent = product.title;
+            document.getElementById('offer-description').textContent = product.description;
+            document.getElementById('offer-image-1').src = product.image;  // Use image from API
+            document.getElementById('offer-image-2').src = product.image;  // Use image from API
+            document.getElementById('offer-price').textContent = `Get Only €${product.price.toFixed(2)}`;
+            document.getElementById('offer-discount').textContent = `-${Math.round(product.price * 0.2)}%`;
+          })
+          .catch(error => console.error('Error fetching product 7:', error));
+      
+        // Fetch product 8 data (You can use this data as needed)
+        
+      </script>
+      
+
+     <!-- 
+        - #product by categories
+      -->
+
+      <section id="products-section">
+        <h2>Product by Categories</h2>
+        <div id="products-container" class="products-grid"></div>
+      </section>
+
+    </article>
+  </main>
+
+
+  <!-- 
         - #FEATURE
       -->
 
@@ -1223,146 +1191,6 @@
       </section>
       
 
-
-
-
-
-      <!-- 
-        - #OFFER
-      -->
-
-      <section class="section offer" id="offer" aria-label="offer" data-section>
-        <div class="container">
-          <figure class="offer-banner">
-            <img id="offer-image-1" width="305" height="408" loading="lazy" alt="offer products" class="w-100">
-            <img id="offer-image-2" width="450" height="625" loading="lazy" alt="offer products" class="w-100">
-          </figure>
-          <div class="offer-content">
-            <p class="offer-subtitle">
-              <span class="span">Special Offer</span>
-              <span class="badge" aria-label="20% off" id="offer-discount">-20%</span>
-            </p>
-            <h2 class="h2-large section-title" id="offer-title">Mountain Pine Bath Oil</h2>
-            <p class="section-text" id="offer-description">
-              Made using clean, non-toxic ingredients, our products are designed for everyone.
-            </p>
-            <div class="countdown">
-              <span class="time" id="days" aria-label="days">15</span> :
-              <span class="time" id="hours" aria-label="hours">21</span> :
-              <span class="time" id="minutes" aria-label="minutes">46</span> :
-              <span class="time" id="seconds" aria-label="seconds">08</span>
-            </div>
-            <a href="#" class="btn btn-primary" id="offer-price">Get Only €39.00</a>
-          </div>
-        </div>
-      </section>
-      
-      <script>
-        // Fetch product 7 data
-        fetch('https://fakestoreapi.com/products/7')
-          .then(res => res.json())
-          .then(product => {
-            // Update content with product 7 data
-            document.getElementById('offer-title').textContent = product.title;
-            document.getElementById('offer-description').textContent = product.description;
-            document.getElementById('offer-image-1').src = product.image;  // Use image from API
-            document.getElementById('offer-image-2').src = product.image;  // Use image from API
-            document.getElementById('offer-price').textContent = `Get Only €${product.price.toFixed(2)}`;
-            document.getElementById('offer-discount').textContent = `-${Math.round(product.price * 0.2)}%`;
-          })
-          .catch(error => console.error('Error fetching product 7:', error));
-      
-        // Fetch product 8 data (You can use this data as needed)
-        
-      </script>
-      
-      
-
-
-
-
-
-      <!-- 
-        - #MEMBERSHIP
-      -->
-
-      <section class="section blog" id="blog" aria-label="blog" data-section>
-        <div class="container">
-
-          <h2 class="h2-large section-title">Membership</h2>
-
-          <ul class="flex-list">
-
-            <li class="flex-item">
-              <div class="blog-card">
-
-                <figure class="card-banner img-holder has-before hover:shine" style="--width: 700; --height: 450;">
-                  <img src="./assets/images/blog-1.jpg" width="700" height="450" loading="lazy" alt="Find a Store"
-                    class="img-cover">
-                </figure>
-
-                <h3 class="h3">
-                  <a href="#" class="card-title">Find a Store</a>
-                </h3>
-
-                <a href="#" class="btn-link">
-                  <span class="span">Our Store</span>
-
-                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-                </a>
-
-              </div>
-            </li>
-
-            <li class="flex-item">
-              <div class="blog-card">
-
-                <figure class="card-banner img-holder has-before hover:shine" style="--width: 700; --height: 450;">
-                  <img src="./assets/images/blog-2.jpg" width="700" height="450" loading="lazy" alt="From Our Blog"
-                    class="img-cover">
-                </figure>
-
-                <h3 class="h3">
-                  <a href="#" class="card-title">From Our Blog</a>
-                </h3>
-
-                <a href="#" class="btn-link">
-                  <span class="span">Our Store</span>
-
-                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-                </a>
-
-              </div>
-            </li>
-
-            <li class="flex-item">
-              <div class="blog-card">
-
-                <figure class="card-banner img-holder has-before hover:shine" style="--width: 700; --height: 450;">
-                  <img src="./assets/images/blog-3.jpg" width="700" height="450" loading="lazy" alt="Our Story"
-                    class="img-cover">
-                </figure>
-
-                <h3 class="h3">
-                  <a href="#" class="card-title">Our Story</a>
-                </h3>
-
-                <a href="#" class="btn-link">
-                  <span class="span">Frequently Question & Answer</span>
-
-                  <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-                </a>
-
-              </div>
-            </li>
-
-          </ul>
-
-        </div>
-      </section>
-
-    </article>
-  </main>
   
 
 

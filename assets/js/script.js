@@ -1,3 +1,68 @@
+let items = document.querySelectorAll('.slider .list .item');
+let next = document.getElementById('next');
+let prev = document.getElementById('prev');
+let thumbnails = document.querySelectorAll('.thumbnail .item');
+
+// config param
+let countItem = items.length;
+let itemActive = 0;
+// event next click
+next.onclick = function(){
+    itemActive = itemActive + 1;
+    if(itemActive >= countItem){
+        itemActive = 0;
+    }
+    showSlider();
+}
+//event prev click
+prev.onclick = function(){
+    itemActive = itemActive - 1;
+    if(itemActive < 0){
+        itemActive = countItem - 1;
+    }
+    showSlider();
+}
+// auto run slider
+let refreshInterval = setInterval(() => {
+    next.click();
+}, 5000)
+function showSlider(){
+    // remove item active old
+    let itemActiveOld = document.querySelector('.slider .list .item.active');
+    let thumbnailActiveOld = document.querySelector('.thumbnail .item.active');
+    itemActiveOld.classList.remove('active');
+    thumbnailActiveOld.classList.remove('active');
+
+    // active new item
+    items[itemActive].classList.add('active');
+    thumbnails[itemActive].classList.add('active');
+    setPositionThumbnail();
+
+    // clear auto time run slider
+    clearInterval(refreshInterval);
+    refreshInterval = setInterval(() => {
+        next.click();
+    }, 5000)
+}
+function setPositionThumbnail () {
+    let thumbnailActive = document.querySelector('.thumbnail .item.active');
+    let rect = thumbnailActive.getBoundingClientRect();
+    if (rect.left < 0 || rect.right > window.innerWidth) {
+        thumbnailActive.scrollIntoView({ behavior: 'smooth', inline: 'nearest' });
+    }
+}
+
+// click thumbnail
+thumbnails.forEach((thumbnail, index) => {
+    thumbnail.addEventListener('click', () => {
+        itemActive = index;
+        showSlider();
+    })
+})
+
+
+
+
 /**
  * Add event on elements or single element
  */
@@ -259,4 +324,54 @@ fetch('https://fakestoreapi.com/products') // Fetch all products
         });
     })
     .catch(error => console.error('Error fetching products:', error));
+
+    // Handle category button click event
+const categoriesButton = document.getElementById('categories-link');
+const dropdownMenu = document.querySelector('.dropdown-menu');
+
+// Show/hide dropdown menu when Categories button is clicked
+categoriesButton.addEventListener('click', () => {
+  dropdownMenu.classList.toggle('show'); // Toggle visibility of dropdown
+});
+
+// Handle category selection
+const dropdownItems = document.querySelectorAll('.dropdown-item');
+dropdownItems.forEach(item => {
+  item.addEventListener('click', (event) => {
+    const category = event.target.dataset.category;
+    // Fetch products based on selected category
+    fetch(`https://fakestoreapi.com/products/category/${category}`)
+      .then((res) => res.json())
+      .then((products) => {
+        displayProducts(products);
+        // Scroll to the products container after displaying products
+        const productsContainer = document.getElementById('products-container');
+        productsContainer.scrollIntoView({ behavior: 'smooth' });
+      })
+      .catch((err) => console.error('Error fetching products:', err));
+  });
+});
+
+// Function to display products
+function displayProducts(products) {
+  const productsContainer = document.getElementById('products-container');
+  productsContainer.innerHTML = ''; // Clear any previous products
+
+  // Loop through the fetched products and display them
+  products.forEach(product => {
+    const productCard = document.createElement('div');
+    productCard.classList.add('product-card');
+    productCard.innerHTML = `
+      <div class="product-image">
+        <img src="${product.image}" alt="${product.title}">
+      </div>
+      <div class="product-info">
+        <h3>${product.title}</h3>
+        <p>${product.description}</p>
+        <span class="product-price">${product.price}€</span>
+      </div>
+    `;
+    productsContainer.appendChild(productCard);
+  });
+}
 
