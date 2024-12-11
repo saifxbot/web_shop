@@ -1,158 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login API Example</title>
-    <style>
-        /* Reset and basic styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f4f7fa;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        h1 {
-            font-size: 2.5rem;
-            color: #333;
-            margin-bottom: 30px;
-            text-align: center;
-        }
-
-        /* Form container */
-        #login-form {
-            width: 100%;
-            max-width: 400px;
-            background-color: #ffffff;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        #login-form input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        #login-form input:focus {
-            border-color: #4CAF50;
-            outline: none;
-        }
-
-        #login-form button {
-            width: 100%;
-            padding: 12px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        #login-form button:hover {
-            background-color: #45a049;
-        }
-
-        /* Response message area */
-        #response {
-            margin-top: 20px;
-            text-align: center;
-        }
-
-        #response p {
-            font-size: 1.1rem;
-            font-weight: bold;
-        }
-
-        /* Footer for credits */
-        footer {
-            position: absolute;
-            bottom: 10px;
-            text-align: center;
-            width: 100%;
-            font-size: 0.9rem;
-            color: #888;
-        }
-
-        footer a {
-            color: #4CAF50;
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-    </style>
+    <title>Login-Silken Pearl</title>
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/login.css">
 </head>
+
 <body>
+    <h2></h2>
+    <div class="container" id="container">
+        <div class="form-container sign-up-container">
+            <form id="signUpForm">
+                <h1>Create Account</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your email for registration</span>
+                <input type="text" id="name" placeholder="Name" required />
+                <input type="email" id="emailSignUp" placeholder="Email" required />
+                <input type="password" id="passwordSignUp" placeholder="Password" required />
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+            <form id="signInForm">
+                <h1>Sign in</h1>
+                <div class="social-container">
+                    <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+                    <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+                <span>or use your account</span>
+                <input type="text" id="emailSignIn" placeholder="ID" required />
+                <input type="password" id="passwordSignIn" placeholder="Password" required />
+                <a href="#">Forgot your password?</a>
+                <button type="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signInBtn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <h1>Hei!</h1>
+                    <p>NEW?Click sign up button get connected with us</p>
+                    <button class="ghost" id="signUpBtn">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-<h1>Login to API</h1>
-<div id="login-form">
-    <input type="text" id="username" placeholder="Username" required>
-    <input type="password" id="password" placeholder="Password" required>
-    <button id="login-btn">Login</button>
-</div>
+    <script>
+        const signUpButton = document.getElementById('signUpBtn');
+        const signInButton = document.getElementById('signInBtn');
+        const container = document.getElementById('container');
+        const signUpForm = document.getElementById('signUpForm');
+        const signInForm = document.getElementById('signInForm');
 
-<div id="response"></div>
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
 
-<script>
-    document.getElementById("login-btn").addEventListener("click", function() {
-        const username = document.getElementById("username").value;
-        const password = document.getElementById("password").value;
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
 
-        if (username && password) {
+        // Sign up API
+        signUpForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const email = document.getElementById('emailSignUp').value;
+            const username = document.getElementById('name').value;
+            const password = document.getElementById('passwordSignUp').value;
+
+            fetch('https://fakestoreapi.com/users', {
+                method: "POST",
+                body: JSON.stringify({
+                    email: email,
+                    username: username,
+                    password: password,
+                    name: {
+                        firstname: username.split(' ')[0],
+                        lastname: username.split(' ')[1] || 'Doe'
+                    },
+                    address: {
+                        city: 'kilcoole',
+                        street: '7835 new road',
+                        number: 3,
+                        zipcode: '12926-3874',
+                        geolocation: {
+                            lat: '-37.3159',
+                            long: '81.1496'
+                        }
+                    },
+                    phone: '1-570-236-7033'
+                })
+            })
+                .then(res => res.json())
+                .then(json => console.log(json))
+                .then(alert('Succesfully signed up'))
+                .catch(error => console.log('Error signing up:', error));
+        });
+
+        // Sign in API
+        // Sign in API
+        signInForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const email = document.getElementById('emailSignIn').value;
+            const password = document.getElementById('passwordSignIn').value;
+
             fetch('https://fakestoreapi.com/auth/login', {
                 method: 'POST',
                 body: JSON.stringify({
-                    username: username,
+                    username: email,
                     password: password
                 }),
                 headers: {
                     'Content-Type': 'application/json'
                 }
             })
-            .then(res => res.json())
+            .then(res => {
+                // Check if response is OK (status 200-299)
+                if (!res.ok) {
+                    throw new Error(`HTTP error! Status: ${res.status}`);
+                }
+                return res.json();  // Try to parse as JSON
+            })
             .then(json => {
-                const responseDiv = document.getElementById("response");
                 if (json.token) {
-                    responseDiv.innerHTML = `<p>Login successful! Token: ${json.token}</p>`;
-                    // Log token to the console
-                    console.log('Token:', json.token);  // Display token in the console
+                    console.log('Login successful, token:', json.token);
+                    alert('Login successful! Check console for token');
                 } else {
-                    responseDiv.innerHTML = `<p>Error: ${json.message || 'Login failed'}</p>`;
+                    console.log('Login failed, no token returned.');
                 }
             })
-            .catch(err => {
-                document.getElementById("response").innerHTML = `<p>Error: ${err.message}</p>`;
+            .catch(error => {
+                console.error('Error logging in:', error);
             });
-        } else {
-            document.getElementById("response").innerHTML = `<p>Please enter both username and password.</p>`;
-        }
-    });
-</script>
+        });
 
-<footer>
-    <p>Created by <a href="" target="_blank">Your Name</a>. All Rights Reserved.</p>
-</footer>
-
+    </script>
 </body>
+
 </html>

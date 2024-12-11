@@ -1,12 +1,10 @@
 :root {
 
-  /**
-   * colors
-   */
+  /*slelcted color*/
 
   --hoockers-green_20: hsl(148, 20%, 38%, 0.2);
   --pale-spring-bud: hsl(60, 68%, 85%);
-  --hoockers-green: hsl(148, 20%, 38%);
+  --hoockers-green: hsl(34, 74%, 50%);
   --spanish-gray: hsl(0, 0%, 61%);
   --light-gray: hsl(0, 0%, 80%);
   --cultured-1: hsl(0, 0%, 97%);
@@ -21,19 +19,13 @@
   --white: hsl(0, 0%, 100%);
   --black: hsl(0, 0%, 0%);
 
-  /**
-   * gradient color
-   */
+  /**gradient color*/
 
   --gradient: linear-gradient(to right, transparent 50%, var(--white_30) 100%);
 
-  /**
-   * typography
-   */
+  /**typography 1rem=16px(by defalt)*/
 
-  --ff-urbanist: 'Urbanist', sans-serif;
-
-  --fs-1: 4.8rem;
+  --fs-1: 4.8rem; /*fs=fontsize*/
   --fs-2: 4rem;
   --fs-3: 3.4rem;
   --fs-4: 2.4rem;
@@ -43,58 +35,46 @@
   --fs-8: 1.4rem;
   --fs-9: 1.3rem;
 
-  --fw-400: 400;
+  --fw-400: 400; /*font weight gets bolder with increasing the number*/
   --fw-500: 500;
   --fw-600: 600;
   --fw-700: 700;
   --fw-800: 800;
 
-  /**
-   * spacing
-   */
+  /*spacing defines custom property for padding inside section*/
 
   --section-padding: 35px;
 
-  /**
-   * shadow
-   */
+  /*shadow*/
 
   --shadow-1: 0 8px 16px var(--black_15);
   --shadow-2: 0 4px 10px var(--black_5);
 
-  /**
-   * radius
-   */
+ 
 
-  --radius-3: 3px;
-
-  /**
-   * transition
-   */
+  /*transition*/
 
   --transition-1: 0.25s ease;
   --transition-2: 0.5s ease;
   --transition-3: 1s ease;
-  --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
-  --cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
+  --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);/*for 'in' stasition*/
+  --cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);/*for 'out' stasition*/
 
 }
 
 
 
-/*-----------------------------------*\
-  #RESET
-\*-----------------------------------*/
 
-*,
+
+*,               /*Targets all elements in the document.*/
 *::before,
 *::after {
-  margin: 0;
+  margin: 0;     /*default values for before after*/
   padding: 0;
   box-sizing: border-box;
 }
 
-li { list-style: none; }
+li { list-style: none; }  /*none is for removing default bullets ,numers from all list*/
 
 a,
 img,
@@ -104,36 +84,35 @@ button,
 ion-icon { display: block; }
 
 a {
-  text-decoration: none;
+  text-decoration: none; /*removes underline*/
   color: white;
   
 }
 
-img { height: auto; }
+img { height: auto; }  /*helps prevent destoring*/
 
 input,
 button {
-  background: none;
+  background: none; 
   border: none;
-  font: inherit;
+  font: inherit;  /*automatically matches with parant element*/
 }
 
 input { width: 100%; }
 
-button { cursor: pointer; }
+button { cursor: pointer; } /*makes a button clickable*/
 
 ion-icon {
   pointer-events: none;
-  --ionicon-stroke-width: 25px;
+  --ionicon-stroke-width: 25px;   /*none means ion icon wont interfere with interaction like clicks*/
 }
 
-html {
-  font-family: var(--ff-urbanist);
+html {              /*for entire page  */
   font-size: 10px;
   scroll-behavior: smooth;
 }
 
-body {
+body {           /*for body part custom property*/
   background-color: var(--white);
   color: var(--black_10);
   font-size: 2.6rem;
@@ -159,21 +138,16 @@ body {
 
 ::-webkit-scrollbar-thumb:hover { background-color: hsl(0, 0%, 70%); }
 
+ 
 
 
+.container { padding-inline: 15px; }    /* '.container' This ensures that the content inside is not touching the edges of the container*/
 
-
-/*-----------------------------------*\
-  #REUSED STYLE
-\*-----------------------------------*/
-
-.container { padding-inline: 15px; }
-
-.section { padding-block: var(--section-padding); }
+.section { padding-block: var(--section-padding); } /*top to buttom padding for section class*/
 
 .has-bg-image {
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: no-repeat; /*image doesnt repeat*/
+  background-size: cover;   /*covers entire area of the element*/
   background-position: center;
 }
 
@@ -217,7 +191,8 @@ body {
   font-size: smaller;
 }
 
-.btn-primary:is(:hover, :focus) { background-color: hsl(34, 93%, 46%);
+.btn-primary:is(:hover, :focus) { 
+  background-color: hsl(34, 93%, 46%);
   transition: background-color 300ms ease-in-out;
 }
 
@@ -243,17 +218,6 @@ body {
 .scrollbar-item {
   min-width: 100%;
   scroll-snap-align: start;
-}
-
-.has-scrollbar::-webkit-scrollbar-track,
-.has-scrollbar::-webkit-scrollbar-thumb { background-color: transparent; }
-
-.has-scrollbar:is(:hover, :focus-within)::-webkit-scrollbar-track {
-  background-color: hsl(0, 0%, 98%);
-}
-
-.has-scrollbar:is(:hover, :focus-within)::-webkit-scrollbar-thumb {
-  background-color: hsl(0, 0%, 70%);
 }
 
 .has-before,
@@ -354,11 +318,70 @@ body {
 
 
 
-/*-----------------------------------*\
-  #HEADER
-\*-----------------------------------*/
+/*---------#HEADER---------------*\
+  
 
 
+
+/* Popup container */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999; /* Ensure it appears above all other elements */
+}
+
+/* Hidden by default */
+.hidden {
+  display: none;
+}
+
+/* Popup content with 1:1 ratio */
+.popup-content {
+  position: relative;
+  background: #000000;
+  padding: 0px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 90vw; /* Set width based on viewport width */
+  height: 90vw; /* Match height to width for 1:1 ratio */
+  max-width: 80vh; /* Prevent popup from being too large */
+  max-height: 80vh; /* Constrain within viewport */
+  overflow: hidden; /* Ensures content doesn't overflow the container */
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 40px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #080808;
+  cursor: pointer;
+}
+
+.close-btn:hover {
+  color: #ff0000;
+}
+
+/* Popup media (for video) */
+.popup-media {
+  max-width: 100%; /* Video scales to fit container */
+  max-height: 100%; /* Video scales to fit container */
+  height: auto; /* Maintain aspect ratio */
+  width: auto; /* Maintain aspect ratio */
+  object-fit: contain; /* Ensure the full video is visible */
+  border-radius: 5px;
+}
 
 #loginBtn {
   position: fixed;
@@ -451,10 +474,6 @@ body {
 
 
 
-/*-----------------------------------*\
-  #MOBILE NAVBAR
-\*-----------------------------------*/
-
 .sidebar { z-index: 5; }
 
 .mobile-navbar {
@@ -525,9 +544,7 @@ body {
 
 
 
-/*-----------------------------------*\
-  #header
-\*-----------------------------------*/
+/*------header--------*/
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 body{
@@ -542,6 +559,8 @@ svg{
 
 .content{
   color: rgb(255, 252, 252);      /*for paragraph h2 and paragraph*/
+  white-space: nowrap;
+  
 }
 
 header{
@@ -553,19 +572,16 @@ header{
     grid-template-rows: 50px;
     justify-content: center;
     align-items: center;
-    position: relative;
+    position: relative; /*remains in the document flow*/
     z-index: 100;
 }
-header .logo{
-    font-weight: bold;
-    color: #717070;
-}
+
 header .menu{
     padding: 0;
     margin: 0;
     list-style: none;
     display: flex;
-    justify-content: center;
+    justify-content: center; /*Aligns items along the main axis*/
     gap: 20px;
     font-weight: 500;
 }
@@ -595,7 +611,7 @@ header .menu{
     left: 0;
     bottom: 0;
     background-image: linear-gradient(
-        to top, #00000074 70%, transparent
+        to top, #0000004c 40%, transparent
     );
 }
 .slider .list .item .content{
@@ -611,14 +627,14 @@ header .menu{
     letter-spacing: 10px;
 }
 .slider .list .item .content h2{
-    font-size: 100px;
+    font-size: 90px;
     margin: 0;
 }
 .slider .list .item.active{
     opacity: 1;
     z-index: 10;
 }
-@keyframes showContent {
+@keyframes showContent {    /*for animation*/
     to{
         transform: translateY(0);
         filter: blur(0);
@@ -667,7 +683,7 @@ header .menu{
     display: flex;
     gap: 10px;
     width: 100%;
-    height: 250px;
+    height: 100px;
     padding: 0 50px;
     box-sizing: border-box;
     overflow: auto;
@@ -677,11 +693,11 @@ header .menu{
     width: 0;
 }
 .thumbnail .item{
-    width: 150px;
-    height: 220px;
-    filter: brightness(.5);
+    width: 10px;
+    height: 25px;
     transition: .5s;
     flex-shrink: 0;
+    border-radius: 20%;
 }
 .thumbnail .item img{
     width: 100%;
@@ -690,7 +706,7 @@ header .menu{
     border-radius: 10px;
 }
 .thumbnail .item.active{
-    filter: brightness(1.5);
+    
 }
 .thumbnail .item .content{
     position: absolute;
@@ -1016,23 +1032,6 @@ header .menu{
   color: var(--black);
   transition: color 0.3s ease;
 }
-
-/* Badge for additional emphasis */
-.offer .badge {
-  font-weight: var(--fw-600);
-  background: #101010;
-  padding: 5px 10px;
-  color: white;
-  border-radius: 5px;
-  font-size: var(--fs-5);
-  transition: background 0.3s ease-in-out;
-}
-
-/* Change color of badge on hover */
-.offer .badge:hover {
-  background: #ff3b30;
-}
-
 /* Section titles for offers */
 .offer .section-title {
   margin-block: 20px 8px;
@@ -1784,66 +1783,6 @@ header .menu{
 
 }
 
-
-/* Popup container */
-.popup {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999; /* Ensure it appears above all other elements */
-}
-
-/* Hidden by default */
-.hidden {
-  display: none;
-}
-
-/* Popup content with 1:1 ratio */
-.popup-content {
-  position: relative;
-  background: #000000;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  text-align: center;
-  width: 90vw; /* Set width based on viewport width */
-  height: 90vw; /* Match height to width for 1:1 ratio */
-  max-width: 80vh; /* Prevent popup from being too large */
-  max-height: 80vh; /* Constrain within viewport */
-  overflow: hidden; /* Ensures content doesn't overflow the container */
-}
-
-/* Close button */
-.close-btn {
-  position: absolute;
-  top: 40px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 24px;
-  color: #080808;
-  cursor: pointer;
-}
-
-.close-btn:hover {
-  color: #ff0000;
-}
-
-/* Popup media (for video) */
-.popup-media {
-  max-width: 100%; /* Video scales to fit container */
-  max-height: 100%; /* Video scales to fit container */
-  height: auto; /* Maintain aspect ratio */
-  width: auto; /* Maintain aspect ratio */
-  object-fit: contain; /* Ensure the full video is visible */
-  border-radius: 5px;
-}
 
 /* Modal Style */
 .cart-modal {
