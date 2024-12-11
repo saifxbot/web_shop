@@ -3,7 +3,7 @@ let next = document.getElementById('next');
 let prev = document.getElementById('prev');
 let thumbnails = document.querySelectorAll('.thumbnail .item');
 
-// config param
+// config parameter
 let countItem = items.length;
 let itemActive = 0;
 // event next click
@@ -61,11 +61,7 @@ thumbnails.forEach((thumbnail, index) => {
 })
 
 
-
-
-/**
- * Add event on elements or single element
- */
+// Add event on elements or single element//
 const addEventOnElem = function (elem, type, callback) {
   if (elem === window) {
     elem.addEventListener(type, callback);
@@ -80,9 +76,6 @@ const addEventOnElem = function (elem, type, callback) {
   }
 };
 
-/**
- * Navbar toggle
- */
 const navTogglers = document.querySelectorAll("[data-nav-toggler]");
 const navbar = document.querySelector("[data-navbar]");
 const navbarLinks = document.querySelectorAll("[data-nav-link]");
@@ -106,9 +99,7 @@ if (navbarLinks.length > 0) {
   addEventOnElem(navbarLinks, "click", closeNavbar);
 }
 
-/**
- * Header sticky & back-to-top button activation
- */
+
 const header = document.querySelector("[data-header]");
 const backTopBtn = document.querySelector("[data-back-top-btn]");
 
@@ -165,7 +156,7 @@ loginBtn?.addEventListener("click", function () {
 });
 
 
-// script.js
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const container = document.querySelector('.container');
